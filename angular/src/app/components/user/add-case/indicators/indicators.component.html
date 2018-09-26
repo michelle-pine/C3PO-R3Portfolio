@@ -1,0 +1,103 @@
+<div class="my-contain">
+  <div class="card my-card big-card data-entry-card" id="post-cath-indicators">
+    <div class="header d-flex">
+      <div class="accent-icon mr-auto">
+        <i class="fa fa-flag"></i>
+      </div>
+      <div class="header-title">
+        <span class="title-text">INDICATORS OF REQUIRED RESOURCES</span>
+      </div>
+    </div>
+    <form>
+      <div class="card-body">
+        <div class="row form-row d-none d-lg-flex">
+          <div class="col-12 col-lg-3">
+
+          </div>
+          <div class="col-12 col-lg-3 type-label">
+            Pre-Procedure
+          </div>
+          <div class="col-12 col-lg-3 type-label">
+            Procedural
+          </div>
+          <div class="col-12 col-lg-3 type-label">
+            Post-Procedure
+          </div>
+        </div>
+        <div *ngFor="let type of types" class="row form-row d-flex" [ngClass]="{'b-border':type.id != 'nursing-assignment', 'push-down': type.id == 'nursing-assignment'}">
+          <div class="col-12 col-lg-3 mb-3 mb-lg-0 d-flex align-items-center">
+            <div class="sect-header no-header-border">{{ type.name }}</div>
+
+          </div>
+
+          <div class="col-12 col-lg-3 mb-3 mb-lg-0">
+            <div class="d-block d-lg-none type-label">Pre-Procedure</div>
+            <span class="field d-flex align-items-center">
+              <div *ngIf="type.id != 'nursing-assignment'" class="max-width">
+                <ng-select [multiple]="type.multiple" (change)="type.multiple && checkNone($event, type, 0)" required [name]="'pre-' + type.id"
+                  [closeOnSelect]="!type.multiple" class="max-width" [searchable]="false" [clearable]="false" [items]="type.items"
+                  [(ngModel)]="type.selections[0]">
+                </ng-select>
+              </div>
+              <div *ngIf="type.id == 'nursing-assignment'" class="max-width">
+                  <ng-select [multiple]="type.multiple" (change)="type.multiple && checkNone($event, type, 0)" required [name]="'pre-' + type.id"
+                    [closeOnSelect]="!type.multiple" class="max-width" [searchable]="false" [clearable]="false" [items]="type.items"
+                    [ngClass]="fields.errorObject(name, 'Nursing Assignment Pre-Procedure')" [(ngModel)]="fields.getField(name, 'Nursing Assignment Pre-Procedure').value">
+                  </ng-select>
+                </div>
+
+            </span>
+          </div>
+          <div class="col-12 col-lg-3 mb-3 mb-lg-0">
+
+            <div class="d-block d-lg-none type-label">Procedural</div>
+            <span class="field d-flex align-items-center">
+              <ng-select [multiple]="type.multiple" [disabled]="type.id == 'nursing-assignment'" (change)="type.multiple && checkNone($event, type, 1)"
+                required [name]="'during-' + type.id" [closeOnSelect]="!type.multiple" class="max-width" [searchable]="false"
+                [clearable]="false" [items]="type.items" [(ngModel)]="type.selections[1]">
+              </ng-select>
+
+            </span>
+
+          </div>
+          <div class="col-12 col-lg-3 mb-3 mb-lg-0">
+            <div class="d-block d-lg-none type-label">Post-Procedure</div>
+            <span class="field d-flex align-items-center">
+              <div *ngIf="type.id != 'nursing-assignment'" class="max-width">
+                <ng-select [multiple]="type.multiple" (change)="type.multiple && checkNone($event, type, 2)" required [name]="'post-' + type.id"
+                  [closeOnSelect]="!type.multiple" [searchable]="false" [clearable]="false" [items]="type.items" [(ngModel)]="type.selections[2]">
+                </ng-select>
+              </div>
+
+
+              <div *ngIf="type.id == 'nursing-assignment'" class="d-flex flex-column flex-xl-row  flex-xl-nowrap max-width push-up">
+                <div class="max-width">
+                  < 6 hrs <ng-select required name="post-procedure-nursing" [closeOnSelect]="false" [searchable]="false" [clearable]="false"
+                    [items]="nursingAssignment1" [ngClass]="fields.errorObject(name, 'Nursing Assignment Post-Procedure Before 6hrs')" [(ngModel)]="fields.getField(name, 'Nursing Assignment Post-Procedure Before 6hrs').value">
+                    </ng-select>
+                </div>
+                <div class="max-width">
+                  > 6 hrs
+
+                  <ng-select required name="post-procedure-nursing" [closeOnSelect]="false" [searchable]="false" [clearable]="false" [items]="nursingAssignment2"
+                    [ngClass]="fields.errorObject(name, 'Nursing Assignment Post-Procedure After 6hrs')" [(ngModel)]="fields.getField(name, 'Nursing Assignment Post-Procedure After 6hrs').value">
+                  </ng-select>
+
+                </div>
+              </div>
+            </span>
+          </div>
+
+        </div>
+
+
+
+
+
+
+
+      </div>
+    </form>
+
+  </div>
+</div>

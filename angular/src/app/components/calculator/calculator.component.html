@@ -1,0 +1,240 @@
+<div class="my-contain">
+  <div class="card my-card big-card data-entry-card calculator" id="demographics">
+    <div class="header d-flex ">
+
+      <div class="accent-icon mr-auto">
+        <i class="fa fa-calculator"></i>
+
+      </div>
+      <div class="header-title">
+
+        <span class="pl-5 pl-sm-0">R3 RISK CALCULATOR</span>
+
+      
+
+      </div>
+
+      <button (click)="changeView($event)" class="btn btn-warning btn-sm mr-0 mr-3">{{ btnText }}</button>
+
+    </div>
+
+    <form>
+      <div class="card-body container-fluid" [@enterAnimation] *ngIf="!showResults">
+        <div class="row">
+          <div class="col-12 col-lg">
+            <div class="sect-header text-center text-lg-left">
+              CLINICAL CHARACTERISTICS</div>
+            <app-calc-characteristics></app-calc-characteristics>
+          </div>
+
+          <div class="col-12 col-lg">
+            <div class="sect-header text-center text-lg-left">
+              HEMODYNAMICS</div>
+            <app-hemos></app-hemos>
+          </div>
+
+
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="sect-header text-center text-lg-left">
+              CASE TYPE</div>
+            <app-case-types-entry [pre]="true"></app-case-types-entry>
+          </div>
+
+        </div>
+
+
+
+
+
+
+
+
+      </div>
+      <div class="card-body container-fluid" [@enterAnimation] *ngIf="showResults">
+        <div class="row mt-3">
+
+          <div class="col-12 col-lg-4">
+            <div class="sect-header text-center text-lg-left">
+              CHARM RESULTS</div>
+            <div class="results">
+              <div class="result">
+                20%
+              </div>
+              <div class="result-links">
+                <a data-toggle="collapse" href="#charm-components">
+                  <i class="fa  fa-puzzle-piece">
+                  </i>&nbsp;Components
+                </a>
+                <div class="collapse" id="charm-components">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      Age
+                    </li>
+                    <li class="list-group-item">
+                      SV EDP
+                    </li>
+                    <li class="list-group-item">
+                      Sys SAT
+                    </li>
+                    <li class="list-group-item">
+                      MV Sat
+                    </li>
+                    <li class="list-group-item">
+                      PA sys
+                    </li>
+                    <li class="list-group-item">
+                      Case Type
+                    </li>
+
+                  </ul>
+                </div>
+                <a>
+                  <i class="fa  fa-file">
+                  </i>&nbsp;Publications
+                </a>
+                <a>
+                  <i class="fa  fa-question-circle">
+                  </i>&nbsp;What does this mean?
+                </a>
+              </div>
+              <div class="result-desc">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at pellentesque mi, laoreet lacinia augue. Cras eleifend, lacus
+                eget scelerisque egestas, sem magna ornare augue, quis mattis justo velit sed mauris
+              </div>
+            </div>
+
+
+          </div>
+          <div class="col-12 col-lg-4">
+            <div class="sect-header text-center text-lg-left">
+              CRISP RESULTS</div>
+            <div class="results">
+              <div class="result">
+                20%
+              </div>
+              <div class="result-links">
+                <a data-toggle="collapse" href="#crisp-components">
+                  <i class="fa  fa-puzzle-piece">
+                  </i>&nbsp;Components
+                </a>
+                <div class="collapse" id="crisp-components">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      Age
+                    </li>
+                    <li class="list-group-item">
+                      Weight
+                    </li>
+                    <li class="list-group-item">
+                      Defined or Suspected Genetic Syndrome
+                    </li>
+                    <li class="list-group-item">
+                      STS Diagnosis
+                    </li>
+                    <li class="list-group-item">
+                      Non-cardiac Problems
+                    </li>
+                    <li class="list-group-item">
+                      CRISP Category
+                    </li>
+                    <li class="list-group-item">
+                      Single Ventricle Physiology
+                    </li>
+                    <li class="list-group-item">
+                      Case Type
+                    </li>
+
+                  </ul>
+                </div>
+                <a>
+                  <i class="fa  fa-file">
+                  </i>&nbsp;Publications
+                </a>
+                <a>
+                  <i class="fa  fa-question-circle">
+                  </i>&nbsp;What does this mean?
+                </a>
+              </div>
+              <div class="result-desc">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at pellentesque mi, laoreet lacinia augue. Cras eleifend, lacus
+                eget scelerisque egestas, sem magna ornare augue, quis mattis justo velit sed mauris
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12 col-lg-4">
+            <div class="sect-header text-center text-lg-left">
+              IMPACT RESULTS</div>
+            <div class="results">
+              <div class="result">
+                20%
+              </div>
+              <div class="result-links">
+                <a data-toggle="collapse" href="#impact-components">
+                  <i class="fa  fa-puzzle-piece">
+                  </i>&nbsp;Components
+                </a>
+                <div class="collapse" id="impact-components">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      Age
+                    </li>
+                    <li class="list-group-item">
+                      SV EDP
+                    </li>
+                    <li class="list-group-item">
+                      Sys SAT
+                    </li>
+                    <li class="list-group-item">
+                      MV Sat
+                    </li>
+                    <li class="list-group-item">
+                      PA sys
+                    </li>
+                    <li class="list-group-item">
+                      Qp:Qs
+                    </li>
+                    <li class="list-group-item">
+                      PVR
+                    </li>
+                    <li class="list-group-item">
+                      Case Type
+                    </li>
+
+                  </ul>
+                </div>
+                <a>
+                  <i class="fa d-inline-block fa-file">
+                  </i>&nbsp;Publications
+                </a>
+                <a>
+                  <i class="fa  fa-question-circle">
+                  </i>&nbsp;What does this mean?
+                </a>
+              </div>
+              <div class="result-desc">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at pellentesque mi, laoreet lacinia augue. Cras eleifend, lacus
+                eget scelerisque egestas, sem magna ornare augue, quis mattis justo velit sed mauris
+              </div>
+            </div>
+
+          </div>
+
+
+
+
+        </div>
+      </div>
+
+
+
+
+
+
+    </form>
+  </div>
+
+
+</div>

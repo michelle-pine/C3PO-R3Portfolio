@@ -1,0 +1,75 @@
+<div class="my-contain">
+    <div class="card my-card big-card data-entry-card" id="procedure-type">
+        <div class="header d-flex">
+            <div class="accent-icon mr-auto">
+                <i class="fa fa-id-card"></i>
+            </div>
+            <div class="header-title">
+                <span class="title-text">CASE IDENTIFICATION</span>
+            </div>
+        </div>
+        <form>
+            <div class="card-body">
+                <div class="row form-row d-flex ">
+                    <div class="col-12 col-md-6">
+                        <span class="field d-flex flex-column">
+                            <input required disabled type="text" class="form-control disabled" id="case-number" placeholder="Case Number" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Case Number'" />
+                            <div class="ghost-label">
+                                <label for="hospital" class="label-sm">Case Number</label>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-6 pr-md-2 mt-3 mt-md-0 pl-md-2">
+                        <span class="field d-flex flex-column">
+                            <input required disabled type="text" class="form-control disabled" id="hospital" name="hospital" [(ngModel)]="hospitalText" placeholder="Hospital" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Hospital'"
+                            />
+                            <div class="ghost-label">
+                                <label for="hospital" class="label-sm">Hospital</label>
+                            </div>
+                        </span>
+                    </div>
+
+
+
+
+                </div>
+
+                <div class="row form-row d-flex">
+
+                    <div class="col-12 col-md-6 mb-3 mb-md-0 pr-md-2">
+                        <span class="field d-flex flex-column">
+                            <input name="cath-date"  [ngClass]="{'error': fields.hasValue(name, 'Cath Date')}" [(ngModel)]="fields.getField(name, 'Cath Date').value" required placeholder="Cath Date (mm/dd/yyyy)" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cath Date (mm/dd/yyyy)' "
+                                [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" class="form-control">
+                            <owl-date-time [hour12Timer]="true" [pickerType]="'calendar'" #dt3></owl-date-time>
+                            <div class="ghost-label">
+                                <label for="hospital" class="label-sm">Cath Date (mm/dd/yyyy)</label>
+                            </div>
+                        </span>
+                    </div>
+
+                    <div class="col-12 col-md-6 pl-md-2">
+                        <span class="field d-flex flex-column">
+                            <select name="operator" name="operator" [ngClass]="{'error': fields.hasValue(name, 'Operator')}" [(ngModel)]="fields.getField(name, 'Operator').value" required class="form-control ml-auto" id="operator">
+                                <option value="null" disabled selected hidden>Operator</option>
+                                <option *ngFor="let item of operators" [value]="item.code">
+                                  {{item.name}}
+                                </option>
+                            </select>
+                            <div class="ghost-label">
+                                <label for="operator" class="label-sm">Operator</label>
+                            </div>
+                        </span>
+
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

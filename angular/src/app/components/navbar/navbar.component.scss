@@ -1,0 +1,131 @@
+@import "../../../custom-variables.scss";
+
+.navbar {
+  height: $navbar-height;
+  padding: 0;
+  z-index: 1029;
+
+  &,
+  & .dropdown-menu {
+    text-transform: uppercase;
+    @include navbarShadow;
+    font-size: $font-size;
+
+    .nav-link,
+    .dropdown-menu a {
+      color: $navbar-text-color !important;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: $border-transparent;
+      @include transition;
+      @media screen and (max-width: 767px) {
+        height: auto !important;
+        padding-right: 0;
+      }
+    }
+  }
+
+  &,
+  & .navbar-collapse {
+    background: $navbar-main-color;
+  }
+
+  .navbar-brand {
+    width: 300px;
+    height: $navbar-height;
+    padding: 0;
+    overflow: hidden;
+    @include navbarShadow;
+    padding: 0;
+    z-index: 1029;
+    @include transition;
+    background: $navbar-brand-color;
+    border-bottom: $navbar-border;
+    @media screen and (max-width: 1120px) {
+      width: 73px !important;
+      padding-right: 5px;
+      margin-right: 0;
+      overflow: hidden;
+    }
+    img {
+      height: $navbar-height;
+      margin-top: 1px;
+      padding-right: 5px;
+      margin-left: -10px;
+      overflow: visible;
+      @media screen and (max-width: 1120px) {
+        margin-top: 1px;
+        margin-left: -10px;
+      }
+    }
+  }
+
+  .nav-link:hover,
+  .active.nav-link,
+  .dropdown-menu a:hover,
+   {
+    border-bottom: $navbar-border;
+    background: transparent;
+  }
+
+
+  .dropdown-menu {
+    .active {
+      background:$navbar-active-bg;
+      color:$navbar-active-text!important;
+    }
+  }
+  .navbar-toggler {
+    color: $inverse !important;
+    @include transition;
+    font-size: 30px;
+    &:hover {
+      @include navbarShadow;
+    }
+  }
+
+  $dropdown-transition: max-height 0.3s, opacity 0.6s;
+  .dropdown {
+    .dropdown-menu {
+      -webkit-transition: $dropdown-transition;
+      -moz-transition: $dropdown-transition;
+      -ms-transition: $dropdown-transition;
+      -o-transition: $dropdown-transition;
+      transition: $dropdown-transition;
+      display: block !important;
+      max-height: 0px;
+      opacity: 0;
+      padding: 0;
+      overflow: hidden;
+      font-size: 14px;
+      background: $navbar-dropdown-color;
+      border: none;
+      a {
+        color: $navbar-dropdown-text-color;
+      }
+    }
+
+    &.show {
+      .dropdown-menu {
+        max-height: 132px;
+        opacity: 1;
+        padding-bottom: 0.25rem;
+        padding-bottom: 0;
+        &.longer-dropdown {
+          max-height:200px;
+        }
+      }
+    }
+  }
+}
+.navbar-nav {
+  height: 100%;
+  @media screen and (max-width: 1120px) {
+    height: auto;
+  }
+  @media screen and (min-width: 768px) {
+    height: $navbar-height;
+  }
+}

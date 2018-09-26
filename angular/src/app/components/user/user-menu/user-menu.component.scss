@@ -1,0 +1,56 @@
+@import "../../../../custom-variables.scss";
+.sect-header {
+  color: $dark-accent;
+  font-weight: 400;
+  @media (max-width: 776px) {
+    text-align: center;
+  }
+}
+
+
+.portal {
+  .dash-link {
+    @include portal-heights;
+    margin-bottom:5px;
+    text-align: left;
+    .header,
+    .accent-icon {
+      @include portal-heights;
+    }
+
+    .header {
+      background:$big-link-bg;
+      border-top:$border-transparent;
+
+      .header-title {
+        @media (min-width:1000px) {
+          padding-left:20px!important;
+        }
+      }
+    }
+
+    .title-text {
+      color: $big-link-title;
+    }
+    .accent-icon {
+      width: $portal-height;
+      line-height: $portal-height;
+      font-size: 45px;
+    }
+    .desc {
+      font-size: 15px;
+      color: $font-color;
+      @media screen and (max-width: 1000px) {
+        font-size: 12px;
+        text-align: center;
+      }
+    }
+
+    .dash-link {
+      .desc {
+        font-size: 15px;
+        color: #333;
+      }
+    }
+  }
+}

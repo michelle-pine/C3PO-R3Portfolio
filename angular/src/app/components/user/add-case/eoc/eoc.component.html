@@ -1,0 +1,97 @@
+<div class="my-contain">
+  <div class="card my-card big-card data-entry-card" id="procedure-type">
+    <div class="header d-flex">
+      <div class="accent-icon mr-auto">
+        <i class="fa fa-file-medical-alt"></i>
+      </div>
+      <div class="header-title">
+        <span class="title-text">EOC ADMIT/DISPOSITION</span>
+      </div>
+    </div>
+    <form>
+      <div class="card-body">
+        <div class="row form-row d-flex">
+          <div class="col-12 col-lg-6">
+            <div class="col-12 p-0 d-flex flex-column flex-lg-row align-items-center">
+              <label class="mb-0">
+                Admission Source </label>
+              <span class="ml-lg-auto d-flex flex-nowrap">
+                <input type="radio" checked id="elective" name="elective-nonelective">
+                <label for="elective">Elective</label>&nbsp;&nbsp;
+                <input type="radio" id="nonelective" name="elective-nonelective">
+                <label for="nonelective">Non-elective</label>
+
+              </span>
+            </div>
+            <div class="col-12 p-0 d-flex flex-column mt-3  flex-lg-row align-items-center">
+              <label class="mb-0">
+                Post-Cath Location </label>
+
+              <span class="ml-lg-auto  d-flex flex-column">
+                <select name="operator" [ngClass]="fields.errorObject(name, 'Post-Cath Location')" [(ngModel)]="fields.getField(name, 'Post-Cath Location').value" required class="form-control" id="operator">
+                  <option value="null" disabled selected hidden></option>
+                  <option value="1">ICU</option>
+                  <option value="2">Step-down Unit</option>
+                  <option value="3">General Floor</option>
+                  <option value="4">Outpatient</option>
+
+
+                </select>
+
+              </span>
+
+
+
+            </div>
+            <div class="col-12 d-flex flex-column flex-lg-row mt-3 p-0 align-items-center">
+              <label class="mb-0">
+                Unplanned Admission </label>
+              <span class="ml-lg-auto d-flex flex-nowrap">
+                <input type="radio" checked id="admit-unplanned-no" name="admit-unplanned">
+                <label for="admit-unplanned-no">No</label>&nbsp;&nbsp;
+                <input type="radio" id="admit-unplanned-yes" name="admit-unplanned">
+                <label for="admit-unplanned-yes">Yes</label>&nbsp;&nbsp;
+
+              </span>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="col-12 p-0 pl-lg-3 d-flex flex-column flex-lg-row align-items-center">
+              <label class="mb-0">
+                Admit > 48 hrs prior to cath </label>
+              <span class="ml-lg-auto d-flex flex-nowrap">
+                <input type="radio" checked id="admit-greater-no" name="admit-greater">
+                <label for="admit-greater-no">No</label>&nbsp;&nbsp;
+                <input type="radio" id="admit-greater-yes" name="admit-greater">
+                <label for="admit-greater-yes">Yes</label>&nbsp;&nbsp;
+
+              </span>
+            </div>
+            <div class="col-12 d-flex p-0 pl-lg-3 mt-3 flex-column flex-lg-row align-items-center">
+              <label class="mb-0">
+                Discharge > 48 hrs post-cath </label>
+              <span class="ml-lg-auto d-flex flex-nowrap">
+                <input type="radio" checked id="admit-less-no" name="admit-less">
+                <label for="admit-less-no">No</label>&nbsp;&nbsp;
+                <input type="radio" id="admit-less-yes" name="admit-less">
+                <label for="admit-less-yes">Yes</label>&nbsp;&nbsp;
+
+              </span>
+            </div>
+            <div class="col-12 d-flex p-0 pl-lg-3 mt-3 flex-column flex-lg-row align-items-center">
+                <label class="mb-0">
+                  Alive at Discharge </label>
+                <span class="ml-lg-auto d-flex flex-nowrap">
+                  <input type="radio"  id="live-no" name="live">
+                  <label for="live-no">No</label>&nbsp;&nbsp;
+                  <input  checked type="radio" id="live-yes" name="live">
+                  <label for="live-yes">Yes</label>&nbsp;&nbsp;
+  
+                </span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

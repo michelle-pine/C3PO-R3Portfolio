@@ -1,0 +1,104 @@
+<div class="my-contain">
+  <div class="card my-card big-card data-entry-card" id="procedure">
+    <div class="header d-flex">
+      <div class="accent-icon mr-auto">
+        <i class="fa fa-hospital"></i>
+      </div>
+      <div class="header-title">
+        <span class="title-text">PROCEDURE CHARACTERISTICS</span>
+      </div>
+    </div>
+    <form>
+      <div class="card-body">
+
+
+        <div class="row form-row d-flex">
+
+          <div class="col-12 col-md-6 mb-3 mb-md-0">
+            <span class="field d-flex flex-column">
+              <input type="number" name="fluoro-time" [ngClass]="fields.errorObject(name, 'Total Fluoro Time')" [(ngModel)]="fields.getField(name, 'Total Fluoro Time').value" class="form-control" id="fluoro" required placeholder="Total Fluoro Time (minutes)" onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Total Fluoro Time (minutes)'">
+              <div class="ghost-label">
+                <label for="fluoro" class="label-sm">Total Fluoro Time (minutes)</label>
+              </div>
+            </span>
+
+
+          </div>
+          <div class="col-12 col-md-6">
+            <span class="field d-flex flex-column">
+              <input type="number" name="total-dap"  [ngClass]="fields.errorObject(name, 'Total DAP')" [(ngModel)]="fields.getField(name, 'Total DAP').value" class="form-control" id="dap" required placeholder="Total  DAP (&#956;Gy.M&#178;)" onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Total DAP (&#956;Gy.M&#178;)'">
+              <div class="ghost-label">
+                <label for="dap" class="label-sm">Total DAP (&#956;Gy.M&#178;)</label>
+              </div>
+            </span>
+          </div>
+
+        </div>
+        <div class="row form-row d-flex">
+          <div class="col-12 col-md-6 mb-3 mb-md-0">
+            <span class="field d-flex flex-column">
+              <input type="text" #dt4Input [ngClass]="fields.errorObject(name, 'Sheath-in Time')" (dateTimeChange)="setInTime(dt4); setDuration(dt4, dt4Input);" [owlDateTimeTrigger]="dt4"
+                [owlDateTime]="dt4" class="form-control" id="sheath-in" required placeholder="Sheath-in Time" onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Sheath-in Time'">
+              <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
+              <div class="ghost-label">
+                <label for="sheath-in" class="label-sm">Sheath-in Time</label>
+              </div>
+            </span>
+          </div>
+          <div class="col-12 col-md-6">
+            <span class="field d-flex flex-column">
+              <input type="text" #dt5Input [ngClass]="fields.errorObject(name, 'Sheath-out Time')"  (dateTimeChange)="setOutTime(dt5); setDuration(dt5, dt5Input)" [owlDateTimeTrigger]="dt5"
+                [owlDateTime]="dt5" class="form-control" id="sheath-out" required placeholder="Sheath-out Time" onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Sheath-out Time'">
+              <owl-date-time [pickerType]="'timer'" #dt5></owl-date-time>
+              <div class="ghost-label">
+                <label for="sheath-out" class="label-sm">Sheath-out Time</label>
+              </div>
+            </span>
+          </div>
+
+
+        </div>
+
+        <div class="row form-row d-flex">
+          <div class="col-12 col-md-6">
+            <span class="field d-flex flex-column">
+              <input type="text" [ngClass]="fields.errorObject(name, 'Duration')" [(ngModel)]="fields.getField(name, 'Duration').value" disabled name="duration" class="form-control" id="case-duration" required placeholder="Case Duration"
+                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Case Duration'">
+              <div class="ghost-label">
+                <label for="case-duration" class="label-sm">Case Duration</label>
+              </div>
+            </span>
+          </div>
+          <div class="col-12  col-md-6 mt-2 mt-md-0 d-flex flex-column flex-xl-row justify-content-center align-items-center">
+            <div class="col-12 row form-row mx-0 p-0">
+              <div class="col-12 col-xl-8 d-flex align-items-center">
+                <label class="d-flex align-items-center text-center text-lg-left mx-auto mr-md-4 ml-md-0">
+                  Blood Transfusions </label>
+              </div>
+              <div class="col-12 col-xl-4 d-flex align-items-center justify-content-center">
+                <span class="d-flex flex-nowrap">
+                  <input type="radio" checked id="no-transfusion" name="transfusion-yes-no">
+                  <label for="no-transfusion">No</label>&nbsp;&nbsp;
+                  <input type="radio" id="yes-transfusion" name="transfusion-yes-no">
+                  <label for="yes-transfusion">Yes</label>
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+      </div>
+      <div class="card-footer">
+        *In event of no sheath-out time, provide discharge time
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+@import "../../../custom-variables.scss";
+
+.masthead {
+  height: $home-masthead-height;
+  width: 100%;
+  max-width: 100%;
+  background-image: $home-masthead;
+  max-height: $home-masthead-max-height;
+  background-repeat: no-repeat;
+  background-position: right -25px;
+  background-size: auto auto;
+  background-attachment: fixed;
+  border-bottom: $border;
+
+  .row {
+    height: 100%;
+  }
+
+  .col-xl-6 {
+    @media screen and (max-width: 1277px) {
+      -ms-flex: 0 0 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+.blurb {
+  background: $home-masthead-overlay-color;
+  height: 100%;
+  box-shadow: 10px 0px 10px $home-masthead-overlay-color;
+  display: inline-flex;
+  align-items: center;
+
+  .inside-blurb {
+    h1,
+    h5 {
+      width: 100%;
+      font-weight: 400;
+      color: $home-masthead-text-color;
+      display: flex;
+      align-items: start;
+      @media screen and (max-width: 1277px) {
+        justify-content: center;
+      }
+      @media screen and (max-width:475px) {
+        display:block;
+      }
+      i {
+        font-size: 10px;
+        color: $bright-accent2;
+      }
+    }
+
+    h1 {
+      color: $dark-accent !important;
+    }
+
+    @media screen and (max-width: 1277px) {
+      width: 100%;
+
+      h1 {
+        &,
+        &h5 {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
+  @media (max-width:1278px) {
+    box-shadow:none;
+  }
+}

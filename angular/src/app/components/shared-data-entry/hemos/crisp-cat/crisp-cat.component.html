@@ -1,0 +1,6 @@
+
+
+  <span  *ngFor="let val of cat.values" class="ml-1">
+    <input [value]="val" (click)="cat.selection = val" type="radio" [checked]="val === cat.selection" [id]="cat.getRadioName(val)" name="crisp-cat">
+    <label [for]="cat.getRadioName(val)">{{ val }}</label>
+  </span>

@@ -1,0 +1,142 @@
+<div class="my-contain">
+    <div class="card my-card big-card data-entry-card" id="adverse-events">
+        <div class="header d-flex ">
+            <div class="accent-icon mr-auto">
+                <i class="fa fa-exclamation-circle"></i>
+            </div>
+            <div class="header-title">
+                <span class="title-text">ADVERSE EVENTS</span>
+            </div>
+        </div>
+        <div class="card-body container-fluid">
+            <div class="row form-row">
+                <div class="col-12 col-xl-6 row form-row mt-3 mt-md-0">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12 col-sm-8 d-flex align-items-center text-center">
+                                <label class="d-flex align-items-center text-center mx-auto mr-sm-4 ml-sm-0">
+                                    Did adverse event occur? </label>
+                            </div>
+                            <div class="col-12 col-sm-4 d-flex align-items-center justify-content-center">
+                                <span class="d-flex flex-nowrap">
+                                    <input (change)="toggleShowEvents(false)" type="radio" [checked]="fields.getParent(name)['hide']" id="no-ae" name="ae-yes-no">
+                                    <label for="no-ae">No</label>&nbsp;&nbsp;
+                                    <input (change)="toggleShowEvents(true)" [checked]="!fields.getParent(name)['hide']" type="radio" id="yes-ae" name="ae-yes-no">
+                                    <label for="yes-ae">Yes</label>
+                                </span>
+                            </div>
+
+                        </div>
+                        <div class="row" *ngIf="showEvents">
+                            <div class="col-12">
+                                <div class="sect-header">MAJOR ADVERSE EVENT</div>
+                                <ng-select #drop [virtualScroll]="true" placeholder="Major Adverse Events" required name="majorEvent" [closeOnSelect]="true"
+                                    [items]="majorEvents" class="mb-2" [(ngModel)]="selectedMajorAdverseEvent" (add)="addMajor($event)"
+                                    (change)="clearMajor($event)">
+                                    <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                                        <span class="ng-value-label">
+                                            <span class="ng-value-icon" (click)="clear(item)" aria-hidden="true">×</span>
+                                            {{item.name}}
+                                        </span>
+                                    </ng-template>
+                                    <ng-template ng-option-tmp let-item="item">
+                                        {{item.name}}
+                                        <span *ngIf="item.description != ''">
+                                            <a (mouseenter)="info.title = item.name; info.text = item.description; info.show = true;" (mouseleave)="info.show = false">
+                                                <i class="fa fa-info-circle"></i>
+                                            </a>
+                                        </span>
+                                    </ng-template>
+                                </ng-select>
+
+                                <div class="sect-header">OTHER ADVERSE EVENTS</div>
+                                <div class="d-flex flex-row tree-search-contain mb-3">
+                                    <input type="search" id="filter" #filter (keyup)="tree.treeModel.filterNodes(filter.value)" class="form-control" id="procedure-search"
+                                        placeholder="Search">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div id="procedure-tree">
+                                    <tree-root #tree [nodes]="events" (activate)="onSelect($event, tree)" [options]="options"></tree-root>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-12 col-xl-6 row form-row mt-3 mt-md-0">
+                    <div class="col-12">
+                        <div *ngIf="showEvents" class="row">
+                                <div class="col-12 mt-3 mt-lg-0">
+                                        <div class="sect-header">SELECTED EVENTS</div>
+                                        <span  class="field d-flex flex-column mb-3">
+                                            <input disabled required [attr.title]="toAdd.name" type="text" class="form-control " name="name" [(ngModel)]="toAdd.name" id="add-event-name" placeholder="Event Name"
+                                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Name'" />
+                                            <div class="ghost-label">
+                                                <label for="add-event-name" class="label-sm">Event Name</label>
+                                            </div>
+                                        </span>
+                                        <span class="field d-flex flex-column mb-3">
+                                            <select #dropdown (change)="toAdd.seriousness = dropdown.value;" value="null" name="seriousness" required class="form-control ml-auto"
+                                                id="seriousness">
+                                                <option value="0" disabled selected hidden>Seriousness</option>
+                                                <option value="1">Level 1 - none</option>
+                                                <option value="2">Level 2 - minor</option>
+                                                <option value="3">Level 3 - moderate</option>
+                                                <option value="4">Level 4 - major</option>
+                                                <option value="5">Level 5 - catastrophic</option>
+                                            </select>
+                                            <div class="ghost-label">
+                                                <label for="seriousness" class="label-sm">Seriousness</label>
+                                            </div>
+                                        </span>
+                                        <div class="d-flex flex-row flex-nowrap add-clear mt-2 mb-3">
+                                            <button (click)="onSave($event)"  [disabled]="checkAdd()" class="btn btn-warning d-block mr-1">
+                                                ADD
+                                            </button>
+                                            <button (click)="onClear($event)" [disabled]="checkAdd()" class="btn btn-secondary d-block ml-2">
+                                                CLEAR
+                                            </button>
+                                        </div>
+                                        <div class="recorded-procedures"  [ngClass]="fields.errorObject(name, 'Recorded Events')">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item box-header">
+                                                    SELECTED ADVERSE EVENTS
+                                                </li>
+                                            </ul>
+                                            <ul class="list-group list-group-flush entries">
+                                                <li class="list-group-item" *ngFor="let name of getEventsArray()">
+                                                    <div class="d-inline-block">
+                                                        {{ name }} &nbsp;
+        
+                                                        <div class="badge" [ngClass]="{'badge-danger': getSeriousness(name) > 3, 'badge-warning': getSeriousness(name) == 3, 'badge-success': getSeriousness(name) < 3}">
+                                                            {{ getSeriousness(name) }}
+                                                        </div>&nbsp; &nbsp;
+                                                        <a (click)="deleteProcedure($event, name)">
+                                                            <i class="fas fa-times"></i>
+                                                        </a>&nbsp; &nbsp;
+                                                        <a (click)="editProcedure($event, name)">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <span class="field d-flex flex-column mt-3">
+                                            <textarea required type="text" rows="8" name="desc" class="form-control " id="add-event-desc" placeholder="Event Description"
+                                                onfocus="this.placeholder = ''"  [ngClass]="fields.errorObject(name, 'Description')" [(ngModel)]="fields.getField(name, 'Description').value" onblur="this.placeholder = 'Event Description'"></textarea>
+                                            <div class="ghost-label">
+                                                <label for="add-event-desc" class="label-sm">Event Description</label>
+                                            </div>
+                                        </span>
+                                    </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+         
+        </div>
+    </div>
+</div>

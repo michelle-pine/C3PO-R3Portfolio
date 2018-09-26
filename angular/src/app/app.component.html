@@ -1,0 +1,6 @@
+
+<app-navbar></app-navbar>
+<main class="container-fluid" [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+    <router-outlet #o="outlet"></router-outlet>
+</main>
+<app-modal></app-modal>

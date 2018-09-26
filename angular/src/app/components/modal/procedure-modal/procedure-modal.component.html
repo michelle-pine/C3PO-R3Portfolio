@@ -1,0 +1,21 @@
+<div class="modal fade" id="procedure-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Procedure Details</h5>
+        <button type="button" class="close" id="procedure-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Describe:&nbsp;
+        <input required type="text" class="form-control" [(ngModel)] ="service.inputVal" id="add-details" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" (click)="service.setChange(true)">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="service.setChange(false)" data-dismiss="modal">Cancel</button>
+
+      </div>
+    </div>
+  </div>
+</div>

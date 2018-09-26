@@ -1,0 +1,82 @@
+<div class="modal fade cat-modal" id="sts-modal" tabindex="-1" role="dialog" aria-labelledby="sts-modal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header  d-flex align-items-center flex-column flex-md-row">
+        <div class="max-height">
+            <h5 class="modal-title" id="exampleModalLabel">STS DIAGNOSIS</h5>        </div>
+
+        <div class="ml-2">
+            <span *ngFor="let val of calc.stsValues">
+                <input [value]="val" type="radio" (change)="calc.stsSelection = val" [checked]="val === calc.stsSelection" [id]="calc.getSTSId(val)"
+                  name="sts-diag">
+                <label [for]="calc.getSTSId(val)">{{ val }}</label>&nbsp;
+              </span>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  
+      <div class="modal-body container-fluid">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="d-flex flex-row align-items-center tree-search-contain mb-3">
+
+              <input type="search" #myInput (input)="filter.filterItem(myInput.value)" class="form-control" id="sts-search" placeholder="Search">
+              <i class="fas fa-search"></i>
+
+            </div>
+          </div>
+          <div class="col-12 col-md-6 d-flex align-items-center">
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4">
+            <div class="sect-header">CATEGORY 1</div>
+            <ul class="list-group list-group-flush list-container">
+              <li class="list-group-item" *ngFor="let diagnosis of filter.filterCat1">
+                {{diagnosis}}
+              </li>
+            </ul>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="sect-header">CATEGORY 2</div>
+            <ul class="list-group list-group-flush list-container">
+              <li class="list-group-item" *ngFor="let diagnosis of filter.filterCat2">
+                {{diagnosis}}
+              </li>
+            </ul>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="sect-header">CATEGORY 3</div>
+            <ul class="list-group list-group-flush list-container">
+              <li class="list-group-item" *ngFor="let diagnosis of filter.filterCat3">
+                {{diagnosis}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer container-fluid">
+        <div class="row form-row d-flex with-info">
+
+          <div class="col-12 col-sm-6 d-flex align-items-center">
+
+            *if multiple, pick highest
+
+          </div>
+          <div class="col-12 col-sm-6 d-flex align-items-center">
+
+            <div class="d-flex flex-row flex-nowrap  align-items-center">
+            
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

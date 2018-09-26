@@ -1,0 +1,221 @@
+<div class="my-contain">
+    <div class="card my-card big-card data-entry-card" id="clinical-characteristics">
+        <div class="header d-flex ">
+
+            <div class="accent-icon mr-auto">
+                <i class="fa fa-users"></i>
+
+            </div>
+            <div class="header-title">
+
+                <span class="title-text">CLINICAL CHARACTERISTICS</span>
+
+            </div>
+
+
+
+        </div>
+
+        <form>
+            <div class="card-body">
+
+
+
+
+                <div class="row form-row d-flex">
+                    <app-age class="col-12 col-lg-6  mb-3 mb-lg-0 d-flex mt-2 mt-lg-0 flex-column flex-sm-row align-items-center">
+                        
+                    </app-age>
+                    <div class="col-12 col-lg-6 pr-md-2">
+                            <span class="field d-flex flex-column">
+                                    <select name="operator" name="operator" [ngClass]="fields.errorObject(name, 'Sex')" [(ngModel)]="fields.getField(name, 'Sex').value" required class="form-control ml-auto" id="operator">
+                                        <option value="null" disabled selected hidden>Sex</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Male">Male</option>
+        
+        
+                                    </select>
+                                    <div class="ghost-label">
+                                        <label for="operator" class="label-sm">Sex</label>
+                                    </div>
+                                </span>
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="row form-row d-flex">
+                    <div class="col-12 col-md-4 mb-3 mb-md-0">
+                        <span class="field d-flex flex-column">
+                            <input required type="number" name="weight"  class="form-control" (change)="calcBSA()" [ngClass]="fields.errorObject(name, 'Weight')" [(ngModel)]="fields.getField(name, 'Weight').value" id="weight" placeholder="Weight (kg)" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Weight (kg)'"
+                            />
+                            <div class="ghost-label">
+                                <label for="weight" class="label-sm">Weight (kg)</label>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-4  mb-3 mb-md-0 pr-md-2">
+                        <span class="field d-flex flex-column">
+                            <input required type="number" name="height" class="form-control"  (change)="calcBSA()" [ngClass]="fields.errorObject(name, 'Height')" [(ngModel)]="fields.getField(name, 'Height').value" id="height" placeholder="Height (cm)" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Height (cm)'"
+                            />
+                            <div class="ghost-label">
+                                <label for="height" class="label-sm">Height (cm)</label>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <span class="field d-flex flex-column">
+                            <input required type="number" name="bsa" disabled [ngClass]="fields.errorObject(name, 'BSA')" [(ngModel)]="fields.getField(name, 'BSA').value" class="form-control" id="body-surface-area" placeholder="Body Surface Area (m&#178;)" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Body Surface Area (m&#178;)'" />
+                            <div class="ghost-label">
+                                <label for="sex" class="label-sm">Body Surface Area (m&#178;)</label>
+                            </div>
+                        </span>
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="row form-row d-flex mt-3">
+
+
+                    <div class="col-12">
+                        <a data-toggle="modal" data-target="#sts-tree-modal">
+                            <span class="field d-flex flex-column">
+
+                                <input name="sts" disabled [ngClass]="fields.errorObject(name, 'STS')" [(ngModel)]="fields.getField(name, 'STS').text" required type="text" class="form-control" id="sts-diagnosis" placeholder="Select STS Diagnosis"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Select STS Diagnosis'" />
+                                <div class="ghost-label">
+                                    <label for="sts-diagnosis" class="label-sm">STS Diagnosis</label>
+                                </div>
+
+                            </span>
+                        </a>
+
+                    </div>
+
+                </div>
+                <div class="row form-row d-flex">
+                    <div class="col-12 col-md-6">
+                        <div class="col-12 row form-row mt-3 mt-md-0 mx-0 px-0">
+                            <div class="col-12 col-xl-8 d-flex align-items-center">
+                                <label class="d-flex align-items-center text-center text-lg-left mx-auto mr-md-4 ml-md-0">
+                                    Date Last Cath
+                                    < 90 days </label>
+                            </div>
+                            <div class="col-12 col-xl-4 d-flex align-items-center justify-content-center">
+                                <span class="d-flex flex-nowrap">
+                                    <input type="radio" checked id="no-cath-date" name="cath-date-yes-no">
+                                    <label for="no-cath-date">No</label>&nbsp;&nbsp;
+                                    <input type="radio" id="yes-cath-date" name="cath-date-yes-no">
+                                    <label for="yes-cath-date">Yes</label>
+                                </span>
+                            </div>
+
+                        </div>
+                        <div class="col-12 row form-row mt-3 mt-md-0 mx-0 px-0">
+                            <div class="col-12 col-xl-8 d-flex align-items-center">
+                                <label class="d-flex align-items-center text-center text-lg-left mx-auto mr-md-4 ml-md-0">
+                                    Date Last Cardiac Surgery
+                                    < 90 days </label>
+                            </div>
+                            <div class="col-12 col-xl-4 d-flex align-items-center justify-content-center">
+                                <span class="d-flex flex-nowrap">
+                                    <input type="radio" checked id="no-surgery-date" name="surgery-date-yes-no">
+                                    <label for="no-surgery-date">No</label>&nbsp;&nbsp;
+                                    <input type="radio" id="yes-surgery-date" name="surgery-date-yes-no">
+                                    <label for="yes-surgery-date">Yes</label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="col-12 row form-row mx-0 p-0">
+                            <div class="col-12 col-xl-8 d-flex align-items-center">
+                                <label class="d-flex align-items-center text-center text-lg-left mx-auto mr-md-4 ml-md-0">
+                                    Genetic syndrome </label>
+                            </div>
+                            <div class="col-12 col-xl-4 d-flex align-items-center justify-content-center">
+                                <span class="d-flex flex-nowrap">
+                                    <input (change)="fields.setValue(name, 'Genetic Syndrome', false)" [checked]="!fields.getValue(name, 'Genetic Syndrome')" type="radio" checked id="no-syndrome" name="syndrome-yes-no">
+                                    <label  for="no-syndrome">No</label>&nbsp;&nbsp;
+                                    <input (change)="fields.setValue(name, 'Genetic Syndrome', true)" [checked]="fields.getValue(name, 'Genetic Syndrome')" type="radio" id="yes-syndrome" name="syndrome-yes-no">
+                                    <label for="yes-syndrome">Yes</label>
+                                </span>
+                            </div>
+
+                        </div>
+                        <div class="col-12 row form-row mx-0 p-0">
+                                <div class="col-12 col-xl-8 d-flex align-items-center">
+                                    <label class="d-flex align-items-center text-center text-lg-left mx-auto mr-md-4 ml-md-0">
+                                        Non-cardiac problems </label>
+                                </div>
+                                <div class="col-12 col-xl-4 d-flex align-items-center justify-content-center">
+                                    <span class="d-flex flex-nowrap">
+                                        <input type="radio" (change)="toggleCardiacProblems(true)" [checked]="getCardiacProblems()" id="no-problems" name="problems-yes-no">
+                                        <label for="no-problems">No</label>&nbsp;&nbsp;
+                                        <input type="radio" (change)="toggleCardiacProblems(false)" [checked]="!getCardiacProblems()" id="yes-problems" name="problems-yes-no">
+                                        <label for="yes-problems">Yes</label>
+                                    </span>
+                                </div>
+    
+                            </div>
+    
+                            <div class="col-12 px-0 mx-0" *ngIf="!getCardiacProblems()">
+    
+    
+                                <span class="field d-flex flex-column non-cardiac-problems">
+                                    <ng-select [ngClass]="fields.errorObject(name, 'Non-cardiac Problems')" [searchable]="false" placeholder="Non-Cardiac Problems" [multiple]="true" required name="non-cardiac-problem-select"
+                                        [closeOnSelect]="false" [items]="problems" [(ngModel)]="fields.getField(name, 'Non-cardiac Problems').value">
+                                    </ng-select>
+                                    <div class="ghost-label">
+                                        <label for="non-cardiac-problems" class="label-sm">Non-Cardiac Problems</label>
+                                    </div>
+                                </span>
+    
+                            </div>
+                    </div>
+              
+
+
+                </div>
+
+
+
+
+
+
+                <div class="row form-row d-flex" *ngIf="showSelect">
+
+
+                    <div class="col-12 col-lg-6 d-flex align-items-center">
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+        </form>
+    </div>
+
+
+</div>

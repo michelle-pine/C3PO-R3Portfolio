@@ -1,0 +1,83 @@
+<div class="modal fade cat-modal" id="crisp-modal" tabindex="-1" role="dialog" aria-labelledby="crisp-modal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header  d-flex align-items-center flex-column flex-md-row">
+        <div class="max-height">
+          <h5 class="modal-title" id="exampleModalLabel">PHYSIOLOGIC CATEGORY</h5>
+        </div>
+
+        <div class="ml-2">
+          <span *ngFor="let val of cat.values">
+            <input [value]="val" type="radio" (change)="cat.selection = val" [checked]="val === cat.selection" [id]="getRadioName(val)"
+              name="crisp-cat2">
+            <label [for]="getRadioName(val)">{{ val }}</label>&nbsp;&nbsp;
+          </span>
+        </div>
+        <small><strong>If multiple, select highest</strong></small>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+     
+      </div>
+      <div class="modal-body">
+        <!-- <div class="row">
+          <div class="col-12 col-md-4">
+            <div class="sect-header">CATEGORY 1</div>
+            <ul class="list-group list-group-flush list-container">
+              <li class="list-group-item" *ngFor="let diagnosis of toUse[0]">
+                {{diagnosis}}
+              </li>
+            </ul>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="sect-header">CATEGORY 2</div>
+            <ul class="list-group list-group-flush list-container">
+              <li class="list-group-item" *ngFor="let diagnosis of toUse[1]">
+                {{diagnosis}}
+              </li>
+            </ul>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="sect-header">CATEGORY 3</div>
+            <ul class="list-group list-group-flush list-container">
+              <li class="list-group-item" *ngFor="let diagnosis of toUse[2]">
+                {{diagnosis}}
+              </li>
+            </ul>
+          </div>
+        </div> -->
+        <ul class="list-group list-group-flush container-fluid">
+          <li class="row list-group-item d-flex">
+              <div class="col-12 col-sm-3 type-label d-none d-sm-block"></div>
+              <div class="col-12 col-sm-3 type-label d-none d-sm-block">Category 1</div>
+              <div class="col-12 col-sm-3 type-label d-none d-sm-block">Category 2</div>
+              <div class="col-12 col-sm-3 type-label d-none d-sm-block">Category 3</div>
+          </li>
+          <li class="row list-group-item d-flex" *ngFor="let variable of toUse">
+            <div class="col-12 col-sm-3 sect-header no-header-border mb-2 mb-sm-0">
+              {{ variable.name }}
+            </div>
+            <div class="col-12 col-sm-3 mb-2 mb-sm-0" *ngFor="let cat of variable.items; let i = index">
+                <div *ngIf="cat !== ''" class="col-12 col-sm-3 d-block d-sm-none mb-2 mb-sm-0 type-label">Category {{ i + 1 }}</div>
+              {{ cat }}
+            </div>
+        </ul>
+      </div>
+      <div class="modal-footer container-fluid">
+        <div class="row form-row d-flex with-info">
+
+          <div class="col-12  d-flex align-items-center">
+           
+
+          </div>
+          <div class="col-12  d-flex align-items-center">
+            
+            {{ desc }}
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

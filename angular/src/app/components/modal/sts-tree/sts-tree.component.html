@@ -1,0 +1,30 @@
+<div class="modal fade sts-tree-modal" id="sts-tree-modal" tabindex="-1" role="dialog" aria-labelledby="sts-tree-modal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">STS DIAGNOSIS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body container-fluid">
+        <div class="row mb-3">
+          <div class="col-12">
+            <div class="d-flex flex-row tree-search-contain mb-3">
+
+              <input type="search" id="filter" #filter (keyup)="tree2.treeModel.filterNodes(filter.value)" class="form-control" id="procedure-search"
+                placeholder="Search">
+              <i class="fas fa-search"></i>
+
+            </div>
+            <div id="procedure-tree">
+              <tree-root #tree2 [nodes]="data" (activate)="onSelect($event, tree2)" ></tree-root>
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>

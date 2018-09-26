@@ -1,0 +1,21 @@
+@import "../../../../custom-variables.scss";
+
+.contain-width {
+  width: calc(100vw - #{$sidebar-width});
+ 
+  .title-contain {
+    padding-right: 5vw;
+    padding-left: 5vw;
+    padding-top: 2vw;
+    @media (max-width: 776px) {
+        display:none;
+    }
+    .sect-header {
+      color: $dark-accent;
+      font-weight: 400;
+      margin-bottom:0;
+    
+     
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@import "../../../../custom-variables.scss";
+
+.info-modal  {
+    @include transition;
+    position: fixed;
+    display:block;
+    right: 40px;
+    bottom: 50px;
+    @include shadow;
+    border:$border;
+    padding:5px;
+    z-index: 1050;
+    max-height:0px;
+    width:300px;
+    background:white;
+    opacity:0;
+    outline: 0;
+    &.show {
+        opacity:1;
+        max-height:300px;
+    }
+    .sect-header {
+        border-bottom:0;
+        margin-bottom:0;
+    }
+}
+
+

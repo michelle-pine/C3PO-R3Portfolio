@@ -1,0 +1,11 @@
+.sect-header.no-header-border {
+    @media (min-width:576px) {
+        text-align:left;
+        border:0;
+    }
+}
+
+.type-label {
+    padding-left:0;
+    padding-right:0;
+}

@@ -1,0 +1,16 @@
+.radio-label {
+    width:100%;
+
+    @media (max-width:1369px) {
+        font-size:12px;
+        text-align:center;
+    }
+    @media (max-width:996px) {
+        font-size:inherit;
+        width:100%;
+    }
+}
+
+.do-not-exceed {
+    max-width:100%;
+}

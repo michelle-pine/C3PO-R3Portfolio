@@ -1,0 +1,37 @@
+<div class="my-contain">
+  <div class="card my-card big-card data-entry-card" id="procedure-type">
+    <div class="header d-flex">
+      <div class="accent-icon mr-auto">
+        <i class="fa fa-hand-holding-heart"></i>
+      </div>
+      <div class="header-title">
+        <span class="title-text">CASE TYPES</span>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="sect-header">PERFORMED CASE TYPE</div>
+      <app-case-types-entry #entry1 [pre]="false"></app-case-types-entry>
+      <form>
+        <div class="row form-row d-flex"  *ngIf="getCaseTypeDone()">
+
+          <div class="col-12 col-md-6 d-flex align-items-center text-center text-md-left">Does this case type match the pre-cath anticipated case?</div>
+          <div  class="col-12 mt-2 col-md-6 pl-md-4 d-flex justify-content-center justify-content-md-start">
+              <input (change)="toggleHideSecondTree(false)" type="radio"   [checked]="showSecondTree()" [value]="true" id="no-match" name="match">
+              <label for="no-match">No</label>&nbsp;&nbsp;
+              <input (change)="toggleHideSecondTree(true)" type="radio" [checked]="!showSecondTree()" [value]="false"  id="yes-match" name="match">
+              <label for="yes-match">Yes</label>
+          </div>
+
+        </div>
+      </form>
+      <div *ngIf="showSecondTree()">
+        <div class="sect-header">ANTICIPATED CASE TYPE</div>
+        <app-case-types-entry  [pre]="true"></app-case-types-entry>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>

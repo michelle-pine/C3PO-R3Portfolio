@@ -1,0 +1,183 @@
+<div class="row with-info px-0">
+  <div class="col-12 col-md row form-row mt-3 mt-md-0">
+    <div class="col-12 col-xl-6 d-flex align-items-center">
+      <label class="radio-label">
+        Single Ventricle Physiology
+      </label>
+    </div>
+    <div class="col-12 col-xl-6 d-flex align-items-center justify-content-center">
+      <span class="d-flex flex-nowrap">
+        <input type="radio" id="no-sv" [checked]="!hemos.sv" (change)="hemos.toggleSV(false)" name="sv-yes-no">
+        <label for="no-sv">No</label>&nbsp;&nbsp;
+        <input type="radio" [checked]="hemos.sv" (change)="hemos.toggleSV(true)" id="yes-sv" name="sv-yes-no">
+        <label for="yes-sv">Yes</label>
+      </span>
+    </div>
+
+
+
+  </div>
+  <div class="col-12 col-md row form-row">
+    <div class="col-12 col-xl-6 d-flex align-items-center">
+      <label class="radio-label">
+        Physiologic Category
+
+      </label>
+    </div>
+    <div class="col-12 col-xl-6 d-flex align-items-center justify-content-center">
+      <app-crisp-cat data-toggle="modal" data-target="#crisp-modal" class=" d-flex flex-nowrap"></app-crisp-cat>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+</div>
+<div class="row px-0">
+
+  <div class="col-12 col-md row form-row">
+    <div class="col-12 col-xl-6 d-flex align-items-center">
+      <label class="radio-label">
+        SV EDP &#8805; {{hemos.vals.SVEDP}}
+
+      </label>
+    </div>
+    <div class="col-12 col-xl-6 d-flex align-items-center justify-content-center">
+      <span class=" d-flex flex-nowrap">
+        <input type="radio" checked id="no-svedp" name="svedp-yes-no">
+        <label for="no-svedp">No</label>&nbsp;&nbsp;
+        <input type="radio" id="yes-svedp" name="svedp-yes-no">
+        <label for="yes-svedp">Yes</label>
+      </span>
+    </div>
+
+
+
+  </div>
+  <div class="col-12 col-md  row form-row mt-3 mt-md-0">
+    <div class="col-12 col-xl-6 d-flex align-items-center">
+      <label class="radio-label">
+
+        Sys Sat
+        < {{hemos.vals.SysSat}}%</label>
+
+
+    </div>
+    <div class="col-12 col-xl-6 d-flex align-items-center justify-content-center">
+      <span class=" d-flex flex-nowrap">
+        <input type="radio" checked id="no-syssat" name="syssat-yes-no">
+        <label for="no-syssat">No</label>&nbsp;&nbsp;
+        <input type="radio" id="yes-syssat" name="syssat-yes-no">
+        <label for="yes-syssat">Yes</label>
+      </span>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+</div>
+<div class="row px-0">
+
+  <div class="col-12 col-md row form-row">
+    <div class="col-12 col-xl-6 d-flex align-items-center">
+      <label class="radio-label">
+        MV Sat
+        < {{hemos.vals.MVSat}}% </label>
+    </div>
+    <div class="col-12 col-xl-6 d-flex align-items-center justify-content-center">
+      <span class=" d-flex flex-nowrap">
+        <input type="radio" checked id="no-mvsat" name="mvsat-yes-no">
+        <label for="no-mvsat">No</label>&nbsp;&nbsp;
+        <input type="radio" id="yes-mvsat" name="mvsat-yes-no">
+        <label for="yes-mvsat">Yes</label>
+      </span>
+    </div>
+
+
+
+  </div>
+  <div class="col-12 col-md  row form-row mt-3 mt-md-0">
+    <div class="col-12 col-xl-6 d-flex align-items-center">
+      <label class="radio-label">
+
+        PA {{hemos.paTxt}} &#8805; {{hemos.vals.PAMean}}mmHg</label>
+
+
+    </div>
+    <div class="col-12 col-xl-6 d-flex align-items-center justify-content-center">
+      <span class=" d-flex flex-nowrap">
+        <input type="radio" checked id="no-pa" name="pa-yes-no">
+        <label for="no-pa">No</label>&nbsp;&nbsp;
+        <input type="radio" id="yes-pa" name="pa-yes-no">
+        <label for="yes-pa">Yes</label>
+      </span>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+</div>
+<div class="row px-0">
+
+  <div class="col-12 col-md row form-row">
+    <div class="col-12 col-xl-6 d-flex align-items-center">
+      <label class="radio-label">
+        Qp:Qs > {{hemos.vals.QpQs}} </label>
+    </div>
+    <div class="col-12 col-xl-6 d-flex align-items-center justify-content-center">
+      <span class=" d-flex flex-nowrap">
+        <input type="radio" checked id="no-qpqs" name="qpqs-yes-no">
+        <label for="no-qpqs">No</label>&nbsp;&nbsp;
+        <input type="radio" id="yes-qpqs" name="qpqs-yes-no">
+        <label for="yes-qpqs">Yes</label>
+      </span>
+    </div>
+
+
+
+  </div>
+  <div class="col-12 col-md  row form-row mt-3 mt-md-0">
+    <div class="col-12 col-xl-6 d-flex align-items-center">
+      <label class="radio-label">
+
+        PVR > {{hemos.vals.PVR}} WU</label>
+
+
+    </div>
+    <div class="col-12 col-xl-6 d-flex align-items-center justify-content-center">
+      <span class=" d-flex flex-nowrap">
+        <input type="radio" checked id="no-pvr" name="pvr-yes-no">
+        <label for="no-pvr">No</label>&nbsp;&nbsp;
+        <input type="radio" id="yes-pvr" name="pvr-yes-no">
+        <label for="yes-pvr">Yes</label>
+      </span>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+</div>

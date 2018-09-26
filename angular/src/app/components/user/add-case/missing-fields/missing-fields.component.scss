@@ -1,0 +1,28 @@
+@import "../../../../../custom-variables.scss";
+
+.error-border {
+    display:block;
+    &:hover {
+        @include shadow();
+    }
+    .sect-header{
+        border-bottom-color:$danger;
+        border-bottom-style:solid;
+        border-bottom-width:2px;
+    }
+    margin:0.5rem;
+    background:transparentize($danger, 0.7);
+    color:$danger;
+    border-radius:4px;
+    height:100%;
+    padding:10px;
+    .flex-item {
+        // border:1px solid $danger;
+        margin:5px;
+        padding:5px;
+        border-radius:4px;
+        background:white;
+        @include shadow();
+
+    }
+}

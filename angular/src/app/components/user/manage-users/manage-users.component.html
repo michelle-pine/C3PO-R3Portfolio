@@ -1,0 +1,106 @@
+<div class="my-contain">
+  <div class="card my-card big-card contains-table text-center">
+
+    <div class="header d-flex">
+      <div class="accent-icon mr-auto">
+        <i class="fa fa-user-friends"></i>
+
+      </div>
+      <div class="header-title">
+
+        <span class="title-text">Manage Users</span>
+
+      </div>
+
+    </div>
+    <div class="card-body container-fluid">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="d-flex flex-row align-items-center tree-search-contain">
+
+            <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="filter">
+            <i class="fas fa-search"></i>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-6 mt-3 mt-md-0 text-center text-md-left">
+          <button class="btn btn-warning" data-toggle="modal" data-target="#userModal" (click)="users.addUser()">
+            <i class="fa fa-plus"></i>&nbsp;ADD USER</button>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="card-block">
+      <div class="table-responsive-md">
+        <table sortable-table class="table table-hover" (sorted)="onSorted($event)">
+          <thead>
+
+
+            <th class="sortable" (click)="sort('username')">Username&nbsp;
+              <i class="fa" *ngIf="key =='username'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></i>
+            </th>
+
+            <th class="sortable" (click)="sort('email')">Email&nbsp;
+              <i class="fa" *ngIf="key =='email'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></i>
+            </th>
+            <th class="sortable" (click)="sort('fullName')">Full Name&nbsp;
+              <i class="fa" *ngIf="key =='fullName'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></i>
+            </th>
+            <th class="sortable" (click)="sort('active')">Active&nbsp;
+              <i class="fa" *ngIf="key =='active'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></i>
+            </th>
+            <th class="sortable" (click)="sort('institution')">Institution&nbsp;
+              <i class="fa" *ngIf="key =='institution'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></i>
+            </th>
+            <th class="sortable" (click)="sort('role')">Role&nbsp;
+              <i class="fa" *ngIf="key =='role'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></i>
+            </th>
+            <th>Action</th>
+            <th>Password Status</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users.users | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+              <td data-title="Username">
+
+                {{user.username}}
+              </td>
+              <td data-title="Email" >{{user.email}}</td>
+              <td data-title="Full Name" >{{user.fullName}}</td>
+              <td data-title="Active">
+                <a (click)="user.active = !user.active" [attr.title]="user.active ? 'Click to deactivate' : 'Click to activate'">
+                  <i class="fa" [ngClass]="{'fa-check-circle': user.active, 'fa-times-circle': !user.active, 'text-danger':!user.active, 'text-success':user.active}"></i>
+                </a>
+              </td>
+              <td data-title="Institution">{{user.institution}}</td>
+              <td data-title="Role">
+                {{user.role}}
+              </td>
+              <td data-title="Action">
+                <a data-toggle="modal" title="edit" (click)="users.setUser(user, i)" data-target="#userModal">
+                  <i class="fa fa-edit"></i>
+                </a>
+
+              </td>
+              <td data-title="Password Status">
+                <button class="btn btn-warning btn-sm password-btn ">
+                  <i class="fa fa-key"></i>&nbsp;Reset Password</button>
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+      </div>
+      <div>
+
+      </div>
+
+
+    </div>
+    <div class="card-footer">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+  </div>

@@ -1,0 +1,81 @@
+<button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#procedure-modal">Open Modal</button>
+
+<form>
+  <div class="row">
+
+    <div class="col-12 col-lg-6 ">
+
+
+      <div class="d-flex flex-row tree-search-contain mb-3">
+
+        <input type="search" id="filter" #filter (keyup)="search(filter, tree)" class="form-control" id="procedure-search"
+          placeholder="Search">
+        <i class="fas fa-search"></i>
+
+      </div>
+      <div id="procedure-tree">
+    
+          <tree-root [style.visibility]="!diagnosticOnly ? 'visible' : 'hidden'" #tree [nodes]="treeModel.procedures" (activate)="treeModel.onSelect($event, tree)" [options]="treeModel.options"></tree-root>
+ 
+
+      </div>
+
+
+
+
+    </div>
+    <div class="col-12 col-lg-6  mt-lg-0">
+
+      <div class="row mx-2 mt-3 mt-md-0">
+        <div class="recorded-procedures" [ngClass]="treeModel.service.fields.errorObject(treeModel.name,'Recorded Procedures')">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item box-header">
+              RECORDED PROCEDURES
+            </li>
+          </ul>
+          <ul class="list-group list-group-flush entries">
+
+            <li class="list-group-item" *ngFor="let name of treeModel.getProceduresArray()">
+              <div class="d-inline-block">
+                {{ name }} &nbsp;
+                <input *ngIf="treeModel.getProcedures()[name]['primary']" type="radio" [id]="treeModel.getProcedures()[name]['id']"
+                  (click)="treeModel.newPrimary($event, name)" checked name="primary-procedure">
+                <input *ngIf="!treeModel.getProcedures()[name]['primary']" type="radio" [id]="treeModel.getProcedures()[name]['id']"
+                  (click)="treeModel.newPrimary($event, name)" name="primary-procedure">
+                <label [for]="treeModel.getProcedures()[name]['id']">primary</label>&nbsp; &nbsp;
+                <a (click)="treeModel.deleteProcedure($event, name)">
+                  <i class="fas fa-times"></i>
+                </a>
+              </div>
+            </li>
+
+
+          </ul>
+
+
+        </div>
+
+      </div>
+
+      <div class="row mx-1 mt-3" *ngIf="!treeModel.getCaseTypeDone()">
+        <div class="mx-0 px-0 col-12">
+          <button class="btn btn-warning max-width"  [ngClass]="treeModel.service.fields.errorObject(treeModel.name,'Case Type')" [disabled]="treeModel.getProceduresArray().length === 0"(click)="generateCaseType()">GENERATE CASE TYPE</button>
+        </div>
+      </div>
+      <div class="row mx-1 mt-2" *ngIf="treeModel.getCaseTypeDone()">
+        <div class="mx-0 px-0 col-12">
+          <span class="field d-flex flex-column">
+            <input type="text" disabled class="form-control disabled" id="case-type" name="case-type" [(ngModel)]="service.fields.getField(this.treeModel.name, 'Case Type').value" required
+              placeholder="Case Type" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Case Type'">
+            <div class="ghost-label">
+              <label for="case-type" class="label-sm">Case Type</label>
+            </div>
+          </span>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</form>

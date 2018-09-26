@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600");
+@import url("https://use.fontawesome.com/releases/v5.0.13/css/all.css");
+
+
+//STYLING VARIABLES, USED THROUGHOUT ALL SCSS
+//Change these at will, no diving into the css styles required
+//(larger layout changes, however, will require changes to the code)
+
+//FILL COLORS
+$bg: rgb(240, 240, 240);
+$main-accent: #3ab2d1;
+$dark-accent: #007496;
+$bright-accent: #ffc107;
+$bright-accent2: #e0a800;
+$danger: #dc3545;
+$inverse: #fff;
+$placeholder: #6c757d;
+
+//BORDERS
+$border-color: #ddd;
+$border-width: 1px;
+$border: $border-width solid $border-color;
+$border-bright-color: $bright-accent2;
+$border-bright-width: 3px;
+$border-bright: $border-bright-width solid $border-bright-color;
+$border-transparent: $border-bright-width solid rgba(0, 0, 0, 0);
+@mixin fullBorder {
+  border: $border;
+}
+
+//DEFAULT FONT
+$font-stack: 
+"Montserrat",
+Helvetica, Arial, sans-serif;
+$font-size: 15px;
+$font-color: #3a3a3a;
+$font-weight: 400;
+
+//SHADOW
+@mixin shadow {
+  -webkit-box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.8);
+  -ms-box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 0px 20px -7px;
+}
+
+//try not to use this, only for last ditch override
+@mixin importantShadow {
+  -webkit-box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.8) !important;
+  -moz-box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.8) !important;
+  -ms-box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 0px 0px 20px -7px !important;
+}
+
+//DEFAULT ANIMATION TRANSITION
+@mixin transition() {
+  transition: 0.3s all;
+}
+
+//FORM STYLING
+$form-font-size: $font-size;
+$form-font-color: #000;
+$form-font-weight:500;
+$form-bg: #fff;
+$form-label-bg: #eee;
+$form-label-border-color: $border-color;
+$form-label-text-color: $font-color;
+$radio-fill: $bright-accent;
+@mixin formShadow() {
+  @include shadow;
+}
+
+//BUTTONS
+//note that some buttons' colors are determined by the
+//bootstrap library, and are not defined
+//in custom stylesheets
+$btn-background: $bright-accent;
+$btn-border-color: $bright-accent;
+$btn-text: #000;
+$btn-hover-background: #e0a800;
+$btn-hover-border-color: #d39e00;
+$btn-focus-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+
+//NAVBAR
+$navbar-height: 70px;
+$navbar-main-color: $main-accent;
+$navbar-brand-color: $dark-accent;
+$navbar-active-bg:$bright-accent2;
+$navbar-active-text:$font-color;
+$navbar-border: $border-bright;
+$navbar-dropdown-color: $dark-accent;
+$navbar-dropdown-text-color: $inverse;
+$navbar-text-color: $inverse;
+@mixin navbarShadow {
+  @include shadow;
+}
+
+//SIDEBARS
+$sidebar-bg: white;
+$sidebar-width: 300px;
+$sidebar-border: $border;
+$sidebar-link: $main-accent;
+$sidebar-link-height: 50px;
+$sidebar-icon: $dark-accent;
+$sidebar-icon-size: 30px;
+$sidebar-color: $inverse;
+$sidebar-icon-color: $inverse;
+$sidebar-border-accent: $border-bright;
+$sidebar-highlight-color: $bright-accent2;
+$sidebar-criteria-background:#eee;
+@mixin sidebarShadow {
+  @include shadow;
+}
+
+//MASTHEADS
+$home-masthead: url("/assets/images/masthead.png");
+$home-margin:-75px;
+$home-masthead-max-height: 175px;
+$home-masthead-height: 175px;
+$home-masthead-overlay-opacity: 0.85;
+$home-masthead-overlay-color: rgba(
+  255,
+  255,
+  255,
+  $home-masthead-overlay-opacity
+);
+$home-masthead-text-color: $font-color;
+
+$big-link-bg: white;
+$big-link-title: $main-accent;
+
+//CONTENT CARDS
+$card-header-bg: #eee;
+$card-header-font-size: 20px;
+$card-border: $border;
+$card-hover-border: 3px solid $bright-accent2;
+$card-hover-icon-color: $bright-accent2;
+$accent-icon: $dark-accent;
+$accent-icon-color: $inverse;
+$section-header-border: $border-width dashed $border-color;
+@mixin cardShadow {
+  @include shadow;
+}
+
+//USER PORTAL
+$portal-height: 100px;
+@mixin portal-heights {
+  height: $portal-height;
+}
+
+//PARTICIPATING SITES MASONRY
+$hover-border: $border-bright;
+$default-site-bg: #fff;
+$default-site-border: $border;
+@mixin siteShadow {
+  @include shadow;
+}
+
+
+//UTILITIES
+.max-height {
+  height:100%!important;
+}
+
+.max-width {
+  width:100%!important;
+}

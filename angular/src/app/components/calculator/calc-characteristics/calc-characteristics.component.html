@@ -1,0 +1,58 @@
+<div class="row form-row">
+  <app-age class="col-12 col-lg-6 d-flex  flex-column flex-sm-row flex-nowrap justify-content-center justify-content-lg-start align-items-center">
+  </app-age>
+</div>
+<div class="form-row d-flex flex-nowrap">
+  <div class="col-2 d-lg-none">
+  </div>
+  <div class="col-8 col-lg-10">
+    <span class="field d-flex flex-column">
+      <input required type="number" class="form-control" [ngClass]="fields.errorObject('Clinical Characteristics', 'Weight')" [(ngModel)]="fields.getField('Clinical Characteristics', 'Weight').value"
+        id="weight" placeholder="Weight (kg)" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Weight (kg)'" />
+      <div class="ghost-label">
+        <label for="weight" class="label-sm">Weight (kg)</label>
+      </div>
+    </span>
+  </div>
+  <div class="col-2">
+  </div>
+</div>
+<div class="row form-row">
+  <div class="col-12 d-flex flex-column flex-lg-row flex-lg-nowrap align-items-center">
+    <span class="mr-2 with-info">
+      STS Diagnosis&nbsp;
+
+    </span>
+    <div data-toggle="modal" data-target="#sts-modal" class="d-flex flex-row flex-nowrap  align-items-center">
+      <span *ngFor="let val of calc.stsValues">
+        <input [value]="val" type="radio" (click)="calc.stsSelection = val" [checked]="val === calc.stsSelection" [id]="calc.getSTSId(val)"
+          name="sts-diag">
+        <label [for]="calc.getSTSId(val)">{{ val }}</label>&nbsp;&nbsp;
+      </span>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="row form-row">
+  <div class="col-12 d-flex flex-column flex-lg-row align-items-center">
+    <span class="mr-2">
+      Genetic Syndrome
+    </span>
+    <div class="d-flex flex-nowrap flex-row">
+      <span class="mr-2">
+        <input type="radio" (change)="fields.setValue('Clinical Characteristics', 'Genetic Syndrome', false)" [checked]="!fields.getValue('Clinical Characteristics', 'Genetic Syndrome')"
+          id="no-syndrome" value="false" name="yes-no-syndrome" checked>
+        <label for="no-syndrome">No</label>
+      </span>
+      <span class="mr-2">
+        <input (change)="fields.setValue('Clinical Characteristics', 'Genetic Syndrome', true)" type="radio" [checked]="fields.getValue('Clinical Characteristics', 'Genetic Syndrome')"
+          id="yes-syndrome" value="true" name="yes-no-syndrome">
+        <label for="yes-syndrome">Yes</label>
+      </span>
+    </div>
+  </div>
+
+
+</div>

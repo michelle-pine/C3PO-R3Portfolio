@@ -1,0 +1,145 @@
+<div class="d-flex flex-column flex-md-row">
+    <div class="sidebar">
+        <div class="sidebar-links">
+            <div class="sidebar-link sidebar-title d-none d-md-flex">
+                <a class="max-width">
+                    CASE LOOKUP </a>
+
+
+            </div>
+        </div>
+
+        <div class="criteria">
+            <div>
+                <div class="row form-row">
+                    <div class="sect-header">CASE NUMBER</div>
+
+                    <input required type="text" class="form-control" id="case-number" placeholder="Case Number" onfocus="this.placeholder = ''"
+                        onblur="this.placeholder = 'Case Number'" />
+
+                </div>
+            </div>
+            <div class="mt-2">
+                <div class="row form-row">
+                    <div class="sect-header">CATH DATE(S)</div>
+                    <div class="col-5 p-0">
+                        <input [owlDateTimeTrigger]="dt6" placeholder="mm/dd/yyyy" onfocus="this.placeholder = ''" onblur="this.placeholder = 'mm/dd/yyyy' "
+                            [owlDateTime]="dt6" required type="text" class="form-control date" id="cath-date" />
+
+                        <owl-date-time [hour12Timer]="true" [pickerType]="'calendar'" #dt6></owl-date-time>
+                    </div>
+                    <div class="col-1 p-0 d-flex align-items-center justify-content-center">
+                        –
+                    </div>
+                    <div class="col-5 p-0">
+                        <input [owlDateTimeTrigger]="dt7" placeholder="mm/dd/yyyy" onfocus="this.placeholder = ''" onblur="this.placeholder = 'mm/dd/yyyy' "
+                            [owlDateTime]="dt7" required type="text" class="form-control date" id="cath-date" />
+
+                        <owl-date-time [hour12Timer]="true" [pickerType]="'calendar'" #dt7></owl-date-time>
+                    </div>
+                </div>
+                <div class="row form-row">
+                    <div class="sect-header">AGE</div>
+                    <ng-select name="age-search" class="max-width" bindLabel="ChoiceText" [searchable]="false" [clearable]="true" [items]="ageOptions">
+                    </ng-select>
+                </div>
+                <div class="row form-row">
+                    <div class="sect-header">FORM STATUS</div>
+                    <span class="d-flex flex-nowrap incomplete-complete">
+                        <input type="checkbox" checked id="incomplete" name="complete-incomplete-1">
+                        <label class="incomplete" for="incomplete">
+                            <i class="fa fa-exclamation-circle">&nbsp;</i>Incomplete</label>&nbsp;&nbsp;
+                        <input type="checkbox" checked id="complete" name="complete-incomplete-2">
+                        <label class="complete" for="complete">
+                            <i class="fa fa-check-circle">&nbsp;</i>Complete</label>
+                    </span>
+                </div>
+
+            </div>
+            <div class="row form-row mt-4 d-flex flex-nowrap">
+                <button class="btn btn-warning max-width">
+                    <i class="fa fa-search"></i>&nbsp;SEARCH</button>&nbsp;&nbsp;
+                <button class="btn btn-danger  max-width">
+                    <i class="fa fa-times"></i>&nbsp;CLEAR</button>
+
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+    <div class="my-contain">
+        <div class="card my-card big-card contains-table text-center">
+            <div class="header d-flex">
+                <div class="accent-icon mr-auto">
+                    <i class="fa fa-th-list"></i>
+                </div>
+                <div class="header-title">
+                    <span class="title-text">SEARCH RESULTS</span>
+                </div>
+            </div>
+            <form>
+                <div class="card-block">
+                    <div class="table-responsive-md">
+                        <table class="table table-hover">
+                            <thead>
+
+
+                                <th class="sortable" (click)="sort('status')">Status&nbsp;
+                                    <i class="fa" *ngIf="key =='status'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></i>
+                                </th>
+                                <th class="sortable" (click)="sort('number')">Case Number&nbsp;
+                                    <i class="fa" *ngIf="key =='number'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></i>
+                                </th>
+                                <th class="sortable" (click)="sort('date')">Cath Date&nbsp;
+                                    <i class="fa" *ngIf="key =='date'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></i>
+                                </th>
+                                <th class="sortable" (click)="sort('age')">Age&nbsp;
+                                    <i class="fa" *ngIf="key =='age'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></i>
+                                </th>
+                                <th class="sortable" (click)="sort('type')">Case Type&nbsp;
+                                    <i class="fa" *ngIf="key =='type'" [ngClass]="{'fa-chevron-up':reverse,'fa-chevron-down':!reverse}"></i>
+                                </th>
+                                <th >Edit</th>
+                                <th >Delete</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let case of cases | orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+                                    <td data-title="Status" >
+                                        <i class="fa" [attr.title]="case.status" [ngClass]="{'incomplete fa-exclamation-circle':case.status == 'Incomplete', 'complete fa-check-circle': case.status == 'Complete'}"></i>
+                                    </td>
+                                    <td data-title="Case Number" >{{case.number}}</td>
+                                    <td data-title="Cath Date">{{case.date}}</td>
+                                    <td data-title="Age" >{{case.age}}</td>
+                                    <td data-title="Case Type">{{case.type}}</td>
+                                    <td data-title="Edit">
+                                        <a title="edit"><i class="fa fa-pencil-alt"></i></a>
+                                    </td>
+                                    <td data-title="Delete">
+                                        <a title="delete"><i class="fa fa-times delete"></i></a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+</div>

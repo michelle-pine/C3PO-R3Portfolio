@@ -1,0 +1,121 @@
+<div class="d-flex flex-column flex-md-row">
+  <div class="sidebar">
+
+    <div class="sidebar">
+      <div class="sidebar-links">
+
+        <div class="sidebar-link sidebar-title d-none d-md-flex">
+
+
+          <a>
+            ADD CASE </a>
+          <div class="ml-auto d-flex flex-nowrap max-height">
+            <button [routerLink]="prevRoute" [disabled]="prevRoute == './'" class="ml-0 btn btn-secondary text-light btn-sm">
+              <i class="fa fa-chevron-left"></i>
+            </button>
+            <button [routerLink]="nextRoute"   [disabled]="nextRoute == './'" class="ml-0  btn btn-warning btn-sm">
+              <i class="fa fa-chevron-right"></i>
+            </button>
+          </div>
+
+
+        </div>
+        <div class="sidebar-link" routerLinkActive="active">
+
+
+          <a routerLink="/user-portal/add-case/pre-calc">
+            <div class="sidebar-icon">
+              <i class="fa fa-calculator"></i>
+            </div>Pre-Case Calculator </a>
+        </div>
+
+
+        <div class="sidebar-link" routerLinkActive="active">
+
+
+          <a routerLink="/user-portal/add-case/case-id">
+            <div class="sidebar-icon">
+              <i class="fa fa-id-card"></i>
+            </div>Case Identification</a>
+        </div>
+        <div class="sidebar-link" routerLinkActive="active">
+
+
+          <a routerLink="/user-portal/add-case/clinical-characteristics">
+            <div class="sidebar-icon">
+              <i class="fa fa-users"></i>
+            </div>Clinical Characteristics</a>
+        </div>
+        <div class="sidebar-link" routerLinkActive="active">
+
+
+          <a routerLink="/user-portal/add-case/procedure-characteristics">
+            <div class="sidebar-icon">
+              <i class="fa fa-hospital"></i>
+            </div>Procedure Characteristics</a>
+        </div>
+        <div class="sidebar-link" routerLinkActive="active">
+
+
+          <a routerLink="/user-portal/add-case/hemodynamics">
+            <div class="sidebar-icon">
+              <i class="fa fa-heartbeat"></i>
+            </div>Hemodynamics</a>
+        </div>
+
+        <div class="sidebar-link" routerLinkActive="active">
+
+
+          <a routerLink="/user-portal/add-case/case-types">
+            <div class="sidebar-icon">
+              <i class="fa fa-hand-holding-heart"></i>
+            </div>Case Types</a>
+        </div>
+
+
+        <div class="sidebar-link" routerLinkActive="active">
+
+
+          <a routerLink="/user-portal/add-case/adverse-events">
+            <div class="sidebar-icon">
+              <i class="fa fa-exclamation-circle"></i>
+            </div>Adverse Events</a>
+        </div>
+        <div class="sidebar-link" routerLinkActive="active">
+
+
+          <a routerLink="/user-portal/add-case/indicators">
+            <div class="sidebar-icon">
+              <i class="fa fa-flag"></i>
+            </div>Indicators of Required Resources</a>
+        </div>
+        <div class="sidebar-link" routerLinkActive="active">
+
+
+          <a routerLink="/user-portal/add-case/eoc">
+            <div class="sidebar-icon">
+              <i class="fa fa-file-medical-alt"></i>
+            </div>EOC Admit/Disposition</a>
+        </div>
+        <div class="sidebar-link save">
+
+
+          <a (click)="fields.validate = true" routerLink="/user-portal/add-case/save">
+            <div class="sidebar-icon">
+              <i class="fa fa-save"></i>
+            </div>Save</a>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+  <div [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''" class="contain-width">
+
+    <router-outlet #o="outlet">
+
+    </router-outlet>
+  </div>
+
+</div>

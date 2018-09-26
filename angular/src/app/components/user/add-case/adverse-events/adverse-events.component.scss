@@ -1,0 +1,17 @@
+#adverse-events {
+  .recorded-procedures {
+    height: 150px;
+    overflow:auto;
+
+    .entries {
+      height:auto;
+
+    }
+  }
+
+  #procedure-tree {
+    min-height: 300px;
+  }
+
+
+}

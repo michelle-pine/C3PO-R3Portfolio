@@ -1,0 +1,23 @@
+<span class="field d-flex min-md-width d-md-block flex-column mr-2 mb-2 mb-md-0">
+  <input name="age" required [(ngModel)]="fields.getField(name, 'Age').value" (blur)="checkVal()" [ngClass]="{'error': fields.hasValue(name, 'Age') || ageError}"
+    type="number" [attr.min]="min" [attr.max]="max" class="form-control" id="age" placeholder="Age" onfocus="this.placeholder = ''"
+    onblur="this.placeholder = 'Age'" />
+  <div class="ghost-label">
+    <label for="hospital" class="label-sm">Age</label>
+  </div>
+</span>
+<span class="d-flex flex-nowrap min-md-width">
+  <span class="mr-2">
+    <input type="radio" id="days" (change)="setMinMax()" [(ngModel)]="ageType" [value]="'Days'" name="day-month-year">
+    <label for="days">D</label>
+  </span>
+
+  <span class="mr-2">
+    <input type="radio" id="months" (change)="setMinMax()" [(ngModel)]="ageType" [value]="'Months'" name="day-month-year">
+    <label for="months">M</label>
+  </span>
+  <span class="mr-2">
+    <input type="radio" id="years" (change)="setMinMax()" [(ngModel)]="ageType" name="day-month-year" [value]="'Years'">
+    <label for="years">Y</label>
+  </span>
+</span>

@@ -1,0 +1,46 @@
+<div class="my-contain" #container>
+  <div class="card my-card big-card">
+    <div class="header  d-flex">
+      <div class="accent-icon mr-auto">
+        <i class="fa fa-book"></i>
+
+      </div>
+      <div class="header-title">
+
+        <span class="title-text">PUBLICATIONS</span>
+
+      </div>
+    </div>
+    <div class="card-body container-fluid publications">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="d-flex flex-row align-items-center tree-search-contain">
+
+            <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="filter">
+            <i class="fas fa-search"></i>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item pub" *ngFor="let pub of data | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+        <a class="pub-title" href="{{pub.link}}" target="_blank">
+          <h6>{{pub.name}}</h6>
+        </a>
+        <div class="authors">{{pub.authors}}</div>
+        <div class="text-muted"> {{pub.source}}
+          <span *ngIf="pub.date !== ''">&nbsp;<span class="separator"></span> {{pub.date}}</span>
+          <span *ngIf="pub.pages !== ''">&nbsp;<span class="separator"></span> {{pub.pages}}</span>
+          <span *ngIf="pub.epub !== ''">&nbsp;&nbsp;<div class="badge badge-secondary">{{pub.epub}}</div></span> 
+        </div>
+      </li>
+    </ul>
+    <div class="card-footer">
+      <pagination-controls  (pageChange)="scroll(); p = $event"></pagination-controls>
+    </div>
+
+
+  </div>
+
+</div>

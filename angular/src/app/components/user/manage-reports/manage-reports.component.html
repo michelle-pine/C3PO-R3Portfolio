@@ -1,0 +1,361 @@
+<div (window:resize)="onResize($event)"></div>
+<div class="d-flex flex-column flex-md-row">
+  <div class="sidebar">
+
+    <div class="sidebar">
+      <div class="sidebar-links">
+
+        <div class="sidebar-link sidebar-title d-none d-md-flex">
+
+
+          <a class="max-width">
+            Manage Reports </a>
+
+
+        </div>
+
+
+      </div>
+      <div class="criteria reports">
+
+        <div class="row form-row d-flex d-md-none">
+          <div class="sect-header">
+            GENERATE REPORT
+          </div>
+          <div class="max-width">
+            <select #reportSelect2 name="select1" (change)="reload()" [(ngModel)]="currentValue" class="form-control max-width">
+              <option *ngFor="let type of reportTypes" [value]="type">{{type}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row form-row">
+
+          <div class="sect-header">Date Range</div>
+          <div class="col-5 p-0">
+            <input [owlDateTimeTrigger]="dt6" placeholder="mm/dd/yyyy" onfocus="this.placeholder = ''" onblur="this.placeholder = 'mm/dd/yyyy' "
+              [owlDateTime]="dt6" required type="text" class="form-control date" id="cath-date" />
+
+            <owl-date-time [hour12Timer]="true" [pickerType]="'calendar'" #dt6></owl-date-time>
+          </div>
+          <div class="col-1 p-0 d-flex align-items-center justify-content-center">
+            —
+          </div>
+          <div class="col-5 p-0">
+            <input [owlDateTimeTrigger]="dt7" placeholder="mm/dd/yyyy" onfocus="this.placeholder = ''" onblur="this.placeholder = 'mm/dd/yyyy' "
+              [owlDateTime]="dt7" required type="text" class="form-control date" id="cath-date" />
+
+            <owl-date-time [hour12Timer]="true" [pickerType]="'calendar'" #dt7></owl-date-time>
+          </div>
+
+
+        </div>
+        <div  *ngIf="currentValue == 'Date Range'">
+          <div class="row form-row">
+            <div class="sect-header">
+              By Interval
+            </div>
+            <ng-select placeholder="Select Interval" [searchable]="false" [items]="['Month','Quarter','Year']" [multiple]="true" [closeOnSelect]="false"></ng-select>
+          </div>
+          <div class="row form-row">
+            <div class="sect-header">AGE</div>
+            <ng-select placeholder="Select Range" name="age-search" [multiple]="true" [closeOnSelect]="false" bindLabel="ChoiceText"
+              [searchable]="false" [clearable]="true" [items]="ageOptions">
+            </ng-select>
+          </div>
+          <div class="row form-row">
+            <div class="sect-header">Weight Range (lbs)</div>
+            <div class="col-5 p-0">
+              <input class="form-control" type="number">
+            </div>
+            <div class="col-1 p-0 d-flex align-items-center justify-content-center">
+              —
+            </div>
+            <div class="col-5 p-0">
+              <input class="form-control" type="number">
+            </div>
+          </div>
+
+        </div>
+        <div  *ngIf="currentValue == 'Clinical Characteristics'">
+          <div class="row form-row">
+            <div class="sect-header">
+              Characteristic
+            </div>
+            <ng-select placeholder="Select" [searchable]="false" [items]="['Single Ventricle','Genetic Syndrome','Non-Cardiac Problem', 'Last-Cath or Surgery < 90 days']"
+              [multiple]="true" [closeOnSelect]="false"></ng-select>
+          </div>
+
+
+        </div>
+        <div  *ngIf="currentValue == 'Hemodynamic Variables'">
+          <div class="row form-row">
+            <div class="sect-header">
+              Hemodynamics
+            </div>
+            <ng-select placeholder="Select" [searchable]="false" [items]="['Single Ventricle', 'Bi-Ventricle']" [multiple]="true" [closeOnSelect]="false"></ng-select>
+          </div>
+
+
+        </div>
+        <div  *ngIf="currentValue == 'Case Type'">
+
+          <div class="row form-row">
+            <div class="sect-header">
+              Case Type
+            </div>
+            <ng-select placeholder="Select" [(ngModel)]="caseTypeSelect " [items]="caseTypes" [multiple]="true" [closeOnSelect]="false">
+              <ng-template ng-header-tmp>
+                <button (click)="selectAll('caseTypeSelect', 'caseTypes')" class="btn btn-sm btn-secondary mr-2">Select all</button>
+                <button (click)="unselectAll('caseTypeSelect')" class="btn btn-sm btn-secondary">Unselect all</button>
+              </ng-template>
+            </ng-select>
+          </div>
+
+
+        </div>
+        <div  *ngIf="currentValue == 'Risk Type Category'">
+          <div class="row form-row">
+            <div class="sect-header">
+              Risk Type Category
+            </div>
+            <ng-select placeholder="Select" [searchable]="false" [items]="riskTypes" [multiple]="true" [closeOnSelect]="false"></ng-select>
+          </div>
+
+
+        </div>
+        <div  *ngIf="currentValue == 'Adverse Events'">
+
+          <div class="row form-row">
+            <div class="sect-header">
+              By Interval
+            </div>
+            <ng-select placeholder="Select Interval" [searchable]="false" [items]="['Month','Quarter','Year']" [multiple]="true" [closeOnSelect]="false"></ng-select>
+          </div>
+          <div class="row form-row">
+            <div class="sect-header">Event Seriousness</div>
+            <ng-select placeholder="Select" [(ngModel)]="selectedEvents " [items]="events" [multiple]="true" [closeOnSelect]="false">
+              <ng-template ng-header-tmp>
+                <button (click)="selectAll('selectedEvents', 'events')" class="btn btn-sm btn-secondary mr-2">Select all</button>
+                <button (click)="unselectAll('selectedEvents')" class="btn btn-sm btn-secondary">Unselect all</button>
+              </ng-template>
+            </ng-select>
+          </div>
+
+
+        </div>
+        <div  *ngIf="currentValue == 'Risk Adjustment'">
+
+          <div class="row form-row">
+            <div class="sect-header">
+              Site
+            </div>
+            <ng-select placeholder="Select" [searchable]="false" [items]="['Site', 'C3PO']" [multiple]="true" [closeOnSelect]="false"></ng-select>
+          </div>
+
+
+        </div>
+        <div  *ngIf="currentValue == 'Radiation'">
+          <div class="row form-row">
+            <div class="sect-header">
+              By Interval
+            </div>
+            <ng-select placeholder="Select Interval" [searchable]="false" [items]="['Month','Quarter']" [multiple]="true" [closeOnSelect]="false"></ng-select>
+          </div>
+          <div class="row form-row">
+            <div class="sect-header">Radiation Exposure Category</div>
+            <ng-select placeholder="Select" [searchable]="false" [(ngModel)]="selectedRadiationCat " [items]="radiationCat" [multiple]="true"
+              [closeOnSelect]="false">
+              <ng-template ng-header-tmp>
+                <button (click)="selectAll('selectedRadiationCat', 'radiationCat')" class="btn btn-sm btn-secondary mr-2">Select all</button>
+                <button (click)="unselectAll('selectedRadiationCat')" class="btn btn-sm btn-secondary">Unselect all</button>
+              </ng-template>
+            </ng-select>
+          </div>
+
+
+        </div>
+        <div class="row form-row mt-4 d-flex flex-nowrap">
+          <button class="btn btn-warning max-width" (click)="generate()">
+            <i class="fa fa-spinner"></i>&nbsp;GENERATE</button>&nbsp;&nbsp;
+          <button class="btn btn-danger  max-width">
+            <i class="fa fa-times"></i>&nbsp;CLEAR</button>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="my-contain">
+    <div class="card my-card big-card" id="lookup">
+      <div class="header d-flex">
+        <div class="accent-icon mr-auto">
+          <i class="fa fa-chart-area"></i>
+        </div>
+        <div class="header-title container-fluid">
+          <div class="row">
+            <div class="col-12 col-md-6 d-flex align-items-center">
+              <span class="title-text">Generate Report</span>
+            </div>
+            <div class="d-none d-md-flex col-md-6">
+              <select (change)="reload()" #reportSelect name="select1" [(ngModel)]="currentValue" class="form-control max-width">
+                <option *ngFor="let type of reportTypes" [value]="type">{{type}}</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <form>
+        <div class="card-body"  *ngIf="report">
+          <div  *ngIf="currentValue == 'Date Range'" class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <div class="sect-header">Case Volume by Center</div>
+                <div style="display: block;" class="chart-container">
+                  <iframe class="chartjs-hidden-iframe" tabindex="-1"></iframe>
+                  <canvas baseChart [datasets]="dateRange.barChartData" [labels]="dateRange.barChartLabels" [options]="dateRange.barChartOptions"
+                    [legend]="dateRange.barChartLegend" [chartType]="dateRange.barChartType" [colors]="colorService.altColors"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="sect-header">Case Volume by Time Interval at Site</div>
+                <div style="display: block;" class="chart-container">
+                  <iframe class="chartjs-hidden-iframe" tabindex="-1"></iframe>
+                  <canvas baseChart [datasets]="dateRange.barChartData" [labels]="dateRange.barChartLabels" [options]="dateRange.barChartOptions"
+                    [legend]="dateRange.barChartLegend" [chartType]="dateRange.barChartType" [colors]="colorService.altColors"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="sect-header">Age by Center</div>
+                <div style="display: block;" class="chart-container">
+                  <iframe class="chartjs-hidden-iframe" tabindex="-1"></iframe>
+                  <canvas baseChart [datasets]="dateRange.barChartDataStacked" [labels]="dateRange.barChartLabels" [options]="dateRange.barChartOptionsStacked"
+                    [legend]="dateRange.barChartLegend" [chartType]="dateRange.barChartType" [colors]="colorService.colors"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="sect-header">Center by Case Volume</div>
+                <div style="display: block;" class="chart-container">
+                  <iframe class="chartjs-hidden-iframe" tabindex="-1"></iframe>
+                  <canvas baseChart [datasets]="dateRange.barChartDataStacked" [labels]="dateRange.barChartLabels" [options]="dateRange.barChartOptionsStacked"
+                    [legend]="dateRange.barChartLegend" [chartType]="dateRange.barChartType" [colors]="colorService.colors"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="sect-header">Volume by Center (Weight Range)</div>
+                <div style="display: block;" class="chart-container">
+                  <iframe class="chartjs-hidden-iframe" tabindex="-1"></iframe>
+                  <canvas baseChart [datasets]="dateRange.barChartData" [labels]="dateRange.barChartLabels" [options]="dateRange.barChartOptions"
+                    [legend]="dateRange.barChartLegend" [chartType]="dateRange.barChartType" [colors]="colorService.altColors"></canvas>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div  *ngIf="currentValue== 'Clinical Characteristics'" class="container-fluid">
+            <div class="row">
+
+              <div class="col-12 col-md-6">
+                <div class="sect-header">CENTER</div>
+                <div style="display: block;" class="chart-container">
+                  <iframe class="chartjs-hidden-iframe" tabindex="-1"></iframe>
+                  <canvas baseChart height="300" [colors]="colorService.altColors" [data]="characteristics.pieChartData" [labels]="characteristics.pieChartLabels"
+                    [options]="characteristics.pieChartOptions" [chartType]="characteristics.pieChartType"></canvas>
+                </div>
+              </div>
+
+
+              <div class="col-12 col-md-6">
+                <div class="sect-header">C3PO</div>
+                <div style="display: block;" class="chart-container">
+                  <iframe class="chartjs-hidden-iframe" tabindex="-1"></iframe>
+                  <canvas baseChart height="300" [colors]="colorService.altColors" [data]="characteristics.pieChartData" [labels]="characteristics.pieChartLabels"
+                    [options]="characteristics.pieChartOptions" [chartType]="characteristics.pieChartType"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div  *ngIf="currentValue== 'Hemodynamic Variables'" class="container-fluid">
+              <div class="row">
+  
+                <div class="col-12 col-md-6">
+                  <div class="sect-header">EDP</div>
+                  <div style="display: block;" class="chart-container">
+                    <iframe class="chartjs-hidden-iframe" tabindex="-1"></iframe>
+                    <canvas baseChart height="300" [colors]="colorService.altColors" [data]="hemoVariables.pieChartData" [labels]="hemoVariables.pieChartLabels"
+                      [options]="hemoVariables.pieChartOptions" [chartType]="hemoVariables.pieChartType"></canvas>
+                  </div>
+                </div>
+  
+  
+                <div class="col-12 col-md-6">
+                  <div class="sect-header">SA sat</div>
+                  <div style="display: block;" class="chart-container">
+                    <iframe class="chartjs-hidden-iframe" tabindex="-1"></iframe>
+                    <canvas baseChart height="300" [colors]="colorService.altColors" [data]="hemoVariables.pieChartData" [labels]="hemoVariables.pieChartLabels"
+                      [options]="hemoVariables.pieChartOptions" [chartType]="hemoVariables.pieChartType"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+  
+                  <div class="col-12 col-md-6">
+                    <div class="sect-header">QP/QS</div>
+                    <div style="display: block;" class="chart-container">
+                      <iframe class="chartjs-hidden-iframe" tabindex="-1"></iframe>
+                      <canvas baseChart height="300" [colors]="colorService.altColors" [data]="hemoVariables.pieChartData" [labels]="hemoVariables.pieChartLabels"
+                        [options]="hemoVariables.pieChartOptions" [chartType]="hemoVariables.pieChartType"></canvas>
+                    </div>
+                  </div>
+    
+    
+                  <div class="col-12 col-md-6">
+                    <div class="sect-header">MV Sat</div>
+                    <div style="display: block;" class="chart-container">
+                      <iframe class="chartjs-hidden-iframe" tabindex="-1"></iframe>
+                      <canvas baseChart height="300" [colors]="colorService.altColors" [data]="hemoVariables.pieChartData" [labels]="hemoVariables.pieChartLabels"
+                        [options]="hemoVariables.pieChartOptions" [chartType]="hemoVariables.pieChartType"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+  
+                    <div class="col-12 col-md-6">
+                      <div class="sect-header">PVR</div>
+                      <div style="display: block;" class="chart-container">
+                        <iframe class="chartjs-hidden-iframe" tabindex="-1"></iframe>
+                        <canvas baseChart height="300" [colors]="colorService.altColors" [data]="hemoVariables.pieChartData" [labels]="hemoVariables.pieChartLabels"
+                          [options]="hemoVariables.pieChartOptions" [chartType]="hemoVariables.pieChartType"></canvas>
+                      </div>
+                    </div>
+      
+      
+                    <div class="col-12 col-md-6">
+                      <div class="sect-header">PA Sat</div>
+                      <div style="display: block;" class="chart-container">
+                        <iframe class="chartjs-hidden-iframe" tabindex="-1"></iframe>
+                        <canvas baseChart height="300" [colors]="colorService.altColors" [data]="hemoVariables.pieChartData" [labels]="hemoVariables.pieChartLabels"
+                          [options]="hemoVariables.pieChartOptions" [chartType]="hemoVariables.pieChartType"></canvas>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</div>

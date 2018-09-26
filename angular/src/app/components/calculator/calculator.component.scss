@@ -1,0 +1,42 @@
+@import "../../../custom-variables.scss";
+.results {
+  .result {
+    text-align: center;
+    width: 100%;
+
+
+    position: relative;
+
+    font-size: 30px;
+    background: $dark-accent;
+    color: $inverse;
+    margin: 0 auto;
+  }
+
+  .result-links {
+    text-align: center;
+    margin: 15px 0px;
+
+    a {
+      background: $main-accent;
+      color: $inverse;
+      display: block;
+      cursor: pointer;
+      padding: 7px;
+      margin: 5px 5px;
+      text-transform: uppercase;
+
+
+      i {
+        float: left;
+        font-size: 20px;
+      }
+
+      &:hover {
+        background: $bright-accent;
+        color: $font-color;
+      }
+    }
+  }
+}
+

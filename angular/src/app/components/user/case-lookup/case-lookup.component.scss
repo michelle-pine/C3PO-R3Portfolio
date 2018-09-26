@@ -1,0 +1,39 @@
+@import "../../../../custom-variables.scss";
+
+.incomplete-complete {
+  label {
+    font-size: 12px;
+  }
+  input[type="radio"],
+  input[type="checkbox"] {
+    display: none;
+    &:checked {
+      + label.complete {
+        background: $main-accent;
+        color: $inverse;
+      }
+    }
+    + label.complete:hover {
+      background: $main-accent;
+      color: $inverse;
+    }
+  }
+}
+
+.card-block
+{
+  .fa {
+    font-size: 20px;
+    &.complete {
+      color: $main-accent;
+    }
+
+    &.incomplete {
+      color: $bright-accent;
+    }
+
+    &.delete {
+      color: $danger;
+    }
+  }
+}
